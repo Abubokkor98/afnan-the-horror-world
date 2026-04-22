@@ -1,0 +1,20 @@
+import { cacheLife, cacheTag } from "next/cache"
+import type { Video } from "@/types/youtube"
+import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
+import { fetchAllPlaylistVideos } from "@/lib/youtube/helpers/fetch-all-playlist-videos"
+
+/**
+ * Returns the N most viewed videos across all playlists.
+ */
+export async function getMostWatchedVideos(count: number): Promise<Video[]> {
+  "use cache"
+  cacheTag("most-watched")
+  cacheLife("hours")
+
+  const playlists = await getAllPlaylists()
+  const allVideos = await fetchAllPlaylistVideos(playlists)
+
+  return allVideos
+    .sort((a, b) => b.viewCount - a.viewCount)
+    .slice(0, count)
+}
