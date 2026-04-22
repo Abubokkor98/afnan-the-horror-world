@@ -1,4 +1,5 @@
-import type { youtube_v3 } from "googleapis"
+import { cacheLife, cacheTag } from "next/cache"
+
 import { youtube } from "@/lib/youtube/client"
 
 /**
@@ -8,6 +9,10 @@ import { youtube } from "@/lib/youtube/client"
 export async function getVideoIdsFromPlaylist(
   playlistId: string,
 ): Promise<string[]> {
+  "use cache"
+  cacheTag("playlists", `playlist-videos-${playlistId}`)
+  cacheLife("hours")
+
   const ids: string[] = []
   let pageToken: string | undefined
 

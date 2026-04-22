@@ -9,7 +9,7 @@ export function mapToPlaylist(item: youtube_v3.Schema$Playlist): Playlist {
     slug: titleToSlug(item.snippet!.title!),
     description: item.snippet!.description ?? "",
     thumbnail: item.snippet!.thumbnails?.high?.url ?? "",
-    videoCount: item.contentDetails!.itemCount ?? 0,
+    videoCount: item.contentDetails?.itemCount ?? 0,
   }
 }
 
@@ -27,7 +27,7 @@ export function mapToVideo(
       item.snippet!.thumbnails?.high?.url ??
       "",
     publishedAt: item.snippet!.publishedAt!,
-    duration: item.contentDetails!.duration ?? "PT0S",
+    duration: item.contentDetails?.duration ?? "PT0S",
     viewCount: parseInt(item.statistics?.viewCount ?? "0", 10),
     categorySlug,
     categoryLabel,

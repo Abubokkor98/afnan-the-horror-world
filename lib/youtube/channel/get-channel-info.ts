@@ -12,7 +12,7 @@ export async function getChannelInfo(): Promise<Channel | null> {
   cacheLife("hours")
 
   const res = await youtube.channels.list({
-    part: ["snippet", "statistics", "contentDetails"],
+    part: ["snippet", "statistics"],
     id: [CHANNEL_ID],
   })
 

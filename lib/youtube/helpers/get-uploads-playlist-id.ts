@@ -1,5 +1,4 @@
-import { youtube } from "@/lib/youtube/client"
-import { CHANNEL_ID } from "@/lib/youtube/client"
+import { youtube, CHANNEL_ID } from "@/lib/youtube/client"
 
 /**
  * Returns the "Uploads" playlist ID for the channel.
