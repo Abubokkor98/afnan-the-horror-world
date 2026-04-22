@@ -6,7 +6,7 @@ YouTube channel companion website for @AfnanTheHorrorWorldBD. All video data com
 ---
 
 ## Tech Stack
-Next.js 16.2 · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui · Lucide React · Framer Motion · googleapis · React Hook Form + Zod · Cloudflare Pages
+Next.js 16.2 · TypeScript (strict) · Tailwind CSS v4 · shadcn/ui · Remix Icons · Lucide React (if needed) · Framer Motion · googleapis · React Hook Form + Zod · Cloudflare Pages
 
 Never use: Redux, Zustand, Prisma, any database, Express, styled-components, Emotion, CSS-in-JS, Material UI, Ant Design, axios, moment.js, `useMemo`, `useCallback`, `React.memo`, `forwardRef`, `useContext`.
 
