@@ -11,10 +11,14 @@ export async function getMostWatchedVideos(count: number): Promise<Video[]> {
   cacheTag("most-watched")
   cacheLife("hours")
 
+  if (!Number.isInteger(count) || count <= 0) {
+    throw new TypeError("Count must be a positive integer")
+  }
+
   const playlists = await getAllPlaylists()
   const allVideos = await fetchAllPlaylistVideos(playlists)
 
-  return allVideos
+  return [...allVideos]
     .sort((a, b) => b.viewCount - a.viewCount)
     .slice(0, count)
 }

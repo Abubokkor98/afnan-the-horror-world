@@ -8,16 +8,19 @@ import { youtube } from "@/lib/youtube/client"
 export async function getVideoDetails(
   videoIds: string[],
 ): Promise<youtube_v3.Schema$Video[]> {
-  const results: youtube_v3.Schema$Video[] = []
-
+  const batches: string[][] = []
   for (let i = 0; i < videoIds.length; i += 50) {
-    const batch = videoIds.slice(i, i + 50)
-    const res = await youtube.videos.list({
-      part: ["snippet", "contentDetails", "statistics"],
-      id: batch,
-    })
-    results.push(...(res.data.items ?? []))
+    batches.push(videoIds.slice(i, i + 50))
   }
 
-  return results
+  const responses = await Promise.all(
+    batches.map((id) =>
+      youtube.videos.list({
+        part: ["snippet", "contentDetails", "statistics"],
+        id,
+      }),
+    ),
+  )
+
+  return responses.flatMap((res) => res.data.items ?? [])
 }

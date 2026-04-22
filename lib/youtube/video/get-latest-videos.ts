@@ -14,7 +14,7 @@ export async function getLatestVideos(count: number): Promise<Video[]> {
   const playlists = await getAllPlaylists()
   const allVideos = await fetchAllPlaylistVideos(playlists)
 
-  return allVideos
+  return [...allVideos]
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),

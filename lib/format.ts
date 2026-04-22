@@ -14,6 +14,9 @@ const relativeFormatter = new Intl.RelativeTimeFormat("en", {
 })
 
 export function formatViewCount(count: number): string {
+  if (count >= 1_000_000_000) {
+    return `${(count / 1_000_000_000).toFixed(1).replace(/\.0$/, "")}B views`
+  }
   if (count >= 1_000_000) {
     return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M views`
   }
@@ -67,9 +70,10 @@ export function timeToSeconds(time: string): number {
 
 export function titleToSlug(title: string): string {
   return title
+    .trim()
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
-    .trim()
+    .replace(/^-+|-+$/g, "")
 }

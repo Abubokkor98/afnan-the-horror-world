@@ -10,7 +10,7 @@ import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
  */
 export async function getVideo(videoId: string): Promise<Video | null> {
   "use cache"
-  cacheTag(`video-${videoId}`)
+  cacheTag("all-videos", `video-${videoId}`)
   cacheLife("hours")
 
   const details = await getVideoDetails([videoId])
@@ -30,8 +30,14 @@ async function findPlaylistForVideo(
   videoId: string,
   playlists: Playlist[],
 ): Promise<Playlist | null> {
-  for (const playlist of playlists) {
-    const ids = await getVideoIdsFromPlaylist(playlist.id)
+  const playlistsWithIds = await Promise.all(
+    playlists.map(async (playlist) => {
+      const ids = await getVideoIdsFromPlaylist(playlist.id)
+      return { playlist, ids }
+    })
+  )
+
+  for (const { playlist, ids } of playlistsWithIds) {
     if (ids.includes(videoId)) return playlist
   }
   return null

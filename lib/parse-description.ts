@@ -26,7 +26,7 @@ export function parseTimestamps(description: string): ParsedTimestamp[] {
   return timestamps.length >= 2 ? timestamps : []
 }
 
-const COUNTRY_PATTERN = /#country:([a-zA-Z\s]+)/i
+const COUNTRY_PATTERN = /#country:([a-zA-Z ]+)/i
 
 /**
  * Extracts country tag from description (e.g. "#country:Bangladesh").

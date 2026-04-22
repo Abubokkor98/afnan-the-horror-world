@@ -8,15 +8,16 @@ import { getPlaylistVideos } from "@/lib/youtube/video/get-playlist-videos"
 export async function fetchAllPlaylistVideos(
   playlists: Playlist[],
 ): Promise<Video[]> {
-  const videoArrays = await Promise.all(
+  const results = await Promise.allSettled(
     playlists.map((p) => getPlaylistVideos(p.id)),
   )
 
   const seen = new Set<string>()
   const unique: Video[] = []
 
-  for (const videos of videoArrays) {
-    for (const video of videos) {
+  for (const result of results) {
+    if (result.status === "rejected") continue
+    for (const video of result.value) {
       if (seen.has(video.id)) continue
       seen.add(video.id)
       unique.push(video)
