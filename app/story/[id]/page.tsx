@@ -1,9 +1,13 @@
-export default function HomePage() {
+export default function StoryPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   return (
     <main className="flex min-h-svh flex-col items-center justify-center">
-      <h1 className="text-4xl hero-title">Afnan&apos;s Horror World</h1>
+      <h1 className="text-4xl">Story</h1>
       <p className="mt-4 text-(--color-text-muted)">
-        Real horror stories — coming soon
+        Watch the full story
       </p>
     </main>
   )

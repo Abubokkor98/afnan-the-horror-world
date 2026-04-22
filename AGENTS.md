@@ -65,7 +65,7 @@ Never hardcode hex values in component files. Use CSS variables.
 2. **Do exactly what was asked** — nothing extra, no unrequested improvements
 3. **Surgical changes only** — touch only lines the task requires, do not reformat surrounding code or adjust unrelated comments
 4. **State what "done" looks like** before starting any non-trivial task
-5. **Never touch** `package.json`, `next.config.ts`, `tailwind.config.ts`, `globals.css`, `config/playlists.ts`, or any `.env` file unless explicitly asked
+5. **Never touch** `package.json`, `next.config.mjs`, `globals.css`, `config/category-order.ts`, or any `.env` file unless explicitly asked
 6. **Never create a component over 80 lines** — propose extracting a child component first
 
 ---

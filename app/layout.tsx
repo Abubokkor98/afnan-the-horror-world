@@ -1,20 +1,34 @@
-import { Geist, Geist_Mono, Noto_Serif } from "next/font/google"
+import type { Metadata } from "next"
+import { Creepster, Oswald, Outfit } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
 
-const notoSerif = Noto_Serif({subsets:['latin'],variable:'--font-serif'});
-
-const fontSans = Geist({
+const creepster = Creepster({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+  display: "swap",
+})
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-heading",
+  display: "swap",
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
 })
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+export const metadata: Metadata = {
+  title: "Afnan's Horror World | Real Horror Stories",
+  description:
+    "Real horror stories narrated by Afnan — from your neighbourhood, from every corner of the world.",
+}
 
 export default function RootLayout({
   children,
@@ -24,12 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontSans.variable, fontMono.variable, "font-serif", notoSerif.variable)}
+      className={`${creepster.variable} ${oswald.variable} ${outfit.variable} antialiased`}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

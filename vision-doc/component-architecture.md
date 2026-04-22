@@ -43,7 +43,7 @@ Every wrapper element must earn its place with at least one className that does 
 // CORRECT — <article> carries card styling, children carry their own spacing
 export function VideoCard({ video }: VideoCardProps) {
   return (
-    <article className="bg-[var(--color-bg-card)] rounded-lg border ...">
+    <article className="bg-(--color-bg-card) rounded-lg border ...">
       <VideoThumbnail video={video} />
       <CategoryBadge category={video.category} />
       <VideoMeta video={video} />
