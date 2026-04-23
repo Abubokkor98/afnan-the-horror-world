@@ -84,7 +84,8 @@ export function durationToMinutes(iso8601: string): number {
   if (!match) return 0
   const hours = parseInt(match[1] ?? "0", 10)
   const minutes = parseInt(match[2] ?? "0", 10)
-  return hours * 60 + minutes
+  const seconds = parseInt(match[3] ?? "0", 10)
+  return hours * 60 + minutes + seconds / 60
 }
 
 export function formatDate(date: string): string {
@@ -92,5 +93,6 @@ export function formatDate(date: string): string {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   })
 }

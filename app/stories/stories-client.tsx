@@ -12,6 +12,20 @@ interface StoriesClientProps {
   playlists: Playlist[]
 }
 
+const VALID_SORT_OPTIONS = ["newest", "oldest", "most-viewed", "least-viewed"] as const
+const VALID_DURATION_OPTIONS = ["all", "short", "medium", "long"] as const
+
+type SortOption = typeof VALID_SORT_OPTIONS[number]
+type DurationOption = typeof VALID_DURATION_OPTIONS[number]
+
+function parseSort(value: string | null): SortOption {
+  return VALID_SORT_OPTIONS.includes(value as SortOption) ? (value as SortOption) : "newest"
+}
+
+function parseDuration(value: string | null): DurationOption {
+  return VALID_DURATION_OPTIONS.includes(value as DurationOption) ? (value as DurationOption) : "all"
+}
+
 const STORIES_PER_PAGE = 24
 const SHORT_MAX_MINUTES = 10
 const MEDIUM_MAX_MINUTES = 30
@@ -19,10 +33,8 @@ const MEDIUM_MAX_MINUTES = 30
 export function StoriesClient({ videos, playlists }: StoriesClientProps) {
   const searchParams = useSearchParams()
   const [category, setCategory] = useState(searchParams.get("filter") ?? searchParams.get("category") ?? "all")
-  const [sort, setSort] = useState<"newest" | "oldest" | "most-viewed" | "least-viewed">(
-    (searchParams.get("sort") as "newest" | "oldest" | "most-viewed" | "least-viewed") ?? "newest"
-  )
-  const [duration, setDuration] = useState<"all" | "short" | "medium" | "long">("all")
+  const [sort, setSort] = useState<SortOption>(parseSort(searchParams.get("sort")))
+  const [duration, setDuration] = useState<DurationOption>(parseDuration(searchParams.get("duration")))
   const [visibleCount, setVisibleCount] = useState(STORIES_PER_PAGE)
 
   const hasActiveFilters = category !== "all" || sort !== "newest" || duration !== "all"

@@ -52,7 +52,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {otherPlaylists.length > 0 && (
         <section className="space-y-6 border-t border-(--color-border) pt-12">
           <h2 className="text-2xl font-semibold">Other Categories</h2>
-          <CategoryGrid playlists={otherPlaylists} />
+          <CategoryGrid playlists={otherPlaylists} showHeader={false} />
         </section>
       )}
     </main>

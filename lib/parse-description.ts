@@ -42,6 +42,7 @@ export function parseCountry(description: string): string | null {
  */
 export function stripHashtags(description: string): string {
   return description
+    .replace(COUNTRY_PATTERN, "")
     .replace(/#\S+/g, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim()

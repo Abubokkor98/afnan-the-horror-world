@@ -6,11 +6,11 @@ import { RiWhatsappFill, RiFacebookFill, RiFileCopyLine, RiCheckLine } from "@re
 interface ShareButtonsProps {
   videoId: string
   title: string
+  storyUrl: string
 }
 
-export function ShareButtons({ videoId, title }: ShareButtonsProps) {
+export function ShareButtons({ videoId, title, storyUrl }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false)
-  const storyUrl = `${typeof window !== "undefined" ? window.location.origin : ""}/story/${videoId}`
   const encodedUrl = encodeURIComponent(storyUrl)
   const encodedTitle = encodeURIComponent(title)
 
@@ -32,7 +32,7 @@ export function ShareButtons({ videoId, title }: ShareButtonsProps) {
           href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-lg bg-[#25D366]/10 px-4 py-2 text-sm font-medium text-[#25D366] transition-colors hover:bg-[#25D366]/20"
+          className="flex items-center gap-2 rounded-lg bg-(--color-brand-whatsapp)/10 px-4 py-2 text-sm font-medium text-(--color-brand-whatsapp) transition-colors hover:bg-(--color-brand-whatsapp)/20"
         >
           <RiWhatsappFill className="h-4 w-4" />
           WhatsApp
@@ -41,7 +41,7 @@ export function ShareButtons({ videoId, title }: ShareButtonsProps) {
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-lg bg-[#1877F2]/10 px-4 py-2 text-sm font-medium text-[#1877F2] transition-colors hover:bg-[#1877F2]/20"
+          className="flex items-center gap-2 rounded-lg bg-(--color-brand-facebook)/10 px-4 py-2 text-sm font-medium text-(--color-brand-facebook) transition-colors hover:bg-(--color-brand-facebook)/20"
         >
           <RiFacebookFill className="h-4 w-4" />
           Facebook

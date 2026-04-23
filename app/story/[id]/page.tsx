@@ -7,6 +7,7 @@ import { getLatestVideos } from "@/lib/youtube/video/get-latest-videos"
 import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 import { parseTimestamps, parseCountry } from "@/lib/parse-description"
 import { formatViewCount, formatTimeAgo, formatDuration } from "@/lib/format"
+import { safeJsonLd } from "@/lib/safe-json-ld"
 import { VideoPlayer } from "@/components/video-player"
 import { CategoryBadge } from "@/components/video-card/category-badge"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +16,7 @@ import { StoryTimestamps } from "@/app/story/[id]/story-timestamps"
 import { StoryDescription } from "@/app/story/[id]/story-description"
 import { ShareButtons } from "@/app/story/[id]/share-buttons"
 import { StorySidebar } from "@/app/story/[id]/story-sidebar"
+import { Video } from "@/types/youtube"
 
 interface StoryPageProps {
   params: Promise<{ id: string }>
@@ -40,6 +42,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
   const timestamps = parseTimestamps(video.description)
   const country = parseCountry(video.description)
   const related = await getRelatedVideos(video.categorySlug, id)
+  const storyUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/story/${id}`
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -53,7 +56,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-8 lg:col-span-2">
@@ -61,7 +64,7 @@ export default async function StoryPage({ params }: StoryPageProps) {
           <StoryHeader video={video} country={country} />
           <StoryDescription description={video.description} />
           <StoryTimestamps timestamps={timestamps} videoId={id} />
-          <ShareButtons videoId={id} title={video.title} />
+          <ShareButtons videoId={id} title={video.title} storyUrl={storyUrl} />
         </div>
         <StorySidebar video={video} />
       </div>
@@ -97,7 +100,7 @@ async function getRelatedVideos(categorySlug: string, currentId: string) {
   }
 }
 
-function StoryHeader({ video, country }: { video: { title: string; categoryLabel: string; viewCount: number; duration: string; publishedAt: string }; country: string | null }) {
+function StoryHeader({ video, country }: { video: Video; country: string | null }) {
   return (
     <div className="space-y-3">
       <h1 className="text-2xl font-semibold leading-tight lg:text-3xl">{video.title}</h1>

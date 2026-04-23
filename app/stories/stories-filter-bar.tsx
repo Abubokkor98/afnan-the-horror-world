@@ -56,12 +56,12 @@ export function StoriesFilterBar({
 
       {/* Sort + Duration + Clear */}
       <div className="flex flex-wrap items-center gap-3">
-        <select value={activeSort} onChange={(e) => onSortChange(e.target.value as SortOption)} className="rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) px-3 py-1.5 text-sm text-(--color-text-primary) outline-none">
+        <select aria-label="Sort stories" value={activeSort} onChange={(e) => onSortChange(e.target.value as SortOption)} className="rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) px-3 py-1.5 text-sm text-(--color-text-primary) focus:ring-1 focus:ring-(--color-crimson) focus:outline-none">
           {SORT_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-        <select value={activeDuration} onChange={(e) => onDurationChange(e.target.value as DurationFilter)} className="rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) px-3 py-1.5 text-sm text-(--color-text-primary) outline-none">
+        <select aria-label="Filter by duration" value={activeDuration} onChange={(e) => onDurationChange(e.target.value as DurationFilter)} className="rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) px-3 py-1.5 text-sm text-(--color-text-primary) focus:ring-1 focus:ring-(--color-crimson) focus:outline-none">
           {DURATION_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
@@ -79,10 +79,12 @@ export function StoriesFilterBar({
 function CategoryChip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <Badge
-      onClick={onClick}
+      asChild
       className={`shrink-0 cursor-pointer transition-colors ${active ? "bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)" : "bg-(--color-bg-elevated) text-(--color-text-muted) hover:bg-(--color-bg-card) hover:text-(--color-text-primary)"}`}
     >
-      {label}
+      <button type="button" onClick={onClick}>
+        {label}
+      </button>
     </Badge>
   )
 }

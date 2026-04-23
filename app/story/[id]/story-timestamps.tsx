@@ -33,6 +33,7 @@ export function StoryTimestamps({ timestamps, videoId }: StoryTimestampsProps) {
               href={`https://www.youtube.com/watch?v=${videoId}&t=${ts.seconds}s`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Jump to story — ${ts.title} at ${ts.time}`}
               className="flex shrink-0 items-center gap-1 text-xs font-medium text-(--color-crimson) transition-colors hover:text-(--color-crimson-hover)"
             >
               Jump to story
