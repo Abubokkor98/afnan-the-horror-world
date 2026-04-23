@@ -40,13 +40,13 @@ interface NavLinkProps {
 
 function NavLink({ href, label, active }: NavLinkProps) {
   const activeClass = active
-    ? "text-(--color-crimson)"
-    : "text-(--color-text-muted) hover:text-(--color-text-primary)"
+    ? "text-(--color-crimson) border-b-2 border-(--color-crimson)"
+    : "text-(--color-text-muted) border-b-2 border-transparent hover:text-(--color-text-primary)"
 
   return (
     <Link
       href={href}
-      className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${activeClass}`}
+      className={`px-3 py-2 text-sm font-medium transition-colors ${activeClass}`}
     >
       {label}
     </Link>
