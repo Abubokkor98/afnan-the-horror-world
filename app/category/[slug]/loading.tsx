@@ -1,8 +1,12 @@
+import { VideoGridSkeleton } from "@/components/skeletons/video-grid-skeleton"
+import { Skeleton } from "@/components/ui/skeleton"
+
 export default function CategoryLoading() {
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center">
-      <div className="h-8 w-48 animate-pulse rounded bg-(--color-bg-elevated)" />
-      <div className="mt-4 h-4 w-64 animate-pulse rounded bg-(--color-bg-elevated)" />
-    </main>
+    <div className="mx-auto max-w-7xl space-y-6 px-4 py-8">
+      <Skeleton className="h-9 w-48" />
+      <Skeleton className="h-5 w-72" />
+      <VideoGridSkeleton count={8} />
+    </div>
   )
 }
