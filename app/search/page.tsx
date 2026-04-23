@@ -1,14 +1,34 @@
-export default function SearchPage({
-  searchParams,
-}: {
+import type { Metadata } from "next"
+import { getAllVideos } from "@/lib/youtube/video/get-all-videos"
+import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
+import { SearchClient } from "@/app/search/search-client"
+
+interface SearchPageProps {
   searchParams: Promise<{ q?: string }>
-}) {
+}
+
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const { q } = await searchParams
+  const title = q ? `"${q}" — Search | Afnan's Horror World` : "Search | Afnan's Horror World"
+
+  return {
+    title,
+    description: "Search horror stories narrated by Afnan — find any story by keyword.",
+  }
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const { q } = await searchParams
+  const videosPromise = getAllVideos()
+  const playlistsPromise = getSortedPlaylists()
+
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center">
-      <h1 className="text-4xl">Search</h1>
-      <p className="mt-4 text-(--color-text-muted)">
-        Find a horror story
-      </p>
+    <main className="mx-auto max-w-7xl space-y-6 px-4 py-8">
+      <SearchClient
+        initialQuery={q ?? ""}
+        videosPromise={videosPromise}
+        playlistsPromise={playlistsPromise}
+      />
     </main>
   )
 }
