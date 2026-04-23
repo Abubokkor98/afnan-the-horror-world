@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useState } from "react"
+import { use, useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { RiSearchLine } from "@remixicon/react"
 import type { Video, Playlist } from "@/types/youtube"
@@ -22,27 +22,36 @@ export function SearchClient({ initialQuery, videosPromise, playlistsPromise }: 
   const [query, setQuery] = useState(initialQuery)
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery)
   const [category, setCategory] = useState("all")
-  const [debounceTimer, setDebounceTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
+    }
+  }, [])
 
   function handleQueryChange(value: string) {
     setQuery(value)
 
-    if (debounceTimer) clearTimeout(debounceTimer)
-    const timer = setTimeout(() => {
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
+    debounceTimerRef.current = setTimeout(() => {
       setDebouncedQuery(value)
       if (value.trim()) {
         router.replace(`/search?q=${encodeURIComponent(value.trim())}`, { scroll: false })
+      } else {
+        router.replace("/search", { scroll: false })
       }
     }, DEBOUNCE_MS)
-    setDebounceTimer(timer)
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (debounceTimer) clearTimeout(debounceTimer)
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
     setDebouncedQuery(query)
     if (query.trim()) {
       router.replace(`/search?q=${encodeURIComponent(query.trim())}`, { scroll: false })
+    } else {
+      router.replace("/search", { scroll: false })
     }
   }
 
@@ -58,6 +67,8 @@ export function SearchClient({ initialQuery, videosPromise, playlistsPromise }: 
       })
     : []
 
+  const hasInitialQuery = initialQuery.length > 0
+
   return (
     <>
       {/* Search bar */}
@@ -69,7 +80,7 @@ export function SearchClient({ initialQuery, videosPromise, playlistsPromise }: 
           value={query}
           onChange={(e) => handleQueryChange(e.target.value)}
           placeholder="Search stories by title..."
-          autoFocus
+          autoFocus={!hasInitialQuery}
           className="h-12 w-full rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) pr-4 pl-12 text-base text-(--color-text-primary) placeholder:text-(--color-text-subtle) focus:border-(--color-crimson) focus:ring-2 focus:ring-(--color-crimson)/20 focus:outline-none"
         />
       </form>

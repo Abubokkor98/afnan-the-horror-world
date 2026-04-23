@@ -75,10 +75,12 @@ export function SearchResults({
 function FilterChip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <Badge
-      onClick={onClick}
+      asChild
       className={`shrink-0 cursor-pointer transition-colors ${active ? "bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)" : "bg-(--color-bg-elevated) text-(--color-text-muted) hover:bg-(--color-bg-card) hover:text-(--color-text-primary)"}`}
     >
-      {label}
+      <button type="button" aria-pressed={active} onClick={onClick}>
+        {label}
+      </button>
     </Badge>
   )
 }

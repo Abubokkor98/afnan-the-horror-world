@@ -9,7 +9,12 @@ interface SearchPageProps {
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams
-  const title = q ? `"${q}" — Search | Afnan's Horror World` : "Search | Afnan's Horror World"
+  const safeQuery = q
+    ?.trim()
+    .replace(/[\p{Cc}]/gu, "")
+    .replace(/\s+/g, " ")
+    .slice(0, 100)
+  const title = safeQuery ? `"${safeQuery}" — Search | Afnan's Horror World` : "Search | Afnan's Horror World"
 
   return {
     title,
