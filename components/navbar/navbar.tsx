@@ -3,6 +3,7 @@ import type { Playlist } from "@/types/youtube"
 import { NavLinks } from "@/components/navbar/nav-links"
 import { SearchInput } from "@/components/navbar/search-input"
 import { MobileMenu } from "@/components/navbar/mobile-menu"
+import { Button } from "@/components/ui/button"
 
 interface NavbarProps {
   playlists: Playlist[]
@@ -22,9 +23,12 @@ export function Navbar({ playlists }: NavbarProps) {
         {/* Desktop nav */}
         <NavLinks playlists={playlists} />
 
-        {/* Desktop search + Mobile menu */}
-        <div className="flex items-center gap-2">
+        {/* Desktop search + Submit button + Mobile menu */}
+        <div className="flex items-center gap-3">
           <SearchInput />
+          <Button asChild size="sm" className="hidden bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover) md:inline-flex">
+            <Link href="/submit">Submit Your Story</Link>
+          </Button>
           <MobileMenu playlists={playlists} />
         </div>
       </div>
