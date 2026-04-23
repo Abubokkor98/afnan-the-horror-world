@@ -27,7 +27,8 @@ export function formatCompactNumber(count: number): string {
 }
 
 export function formatViewCount(count: number): string {
-  return `${formatCompactNumber(count)} views`
+  const label = count === 1 ? "view" : "views"
+  return `${formatCompactNumber(count)} ${label}`
 }
 
 export function formatTimeAgo(date: string): string {

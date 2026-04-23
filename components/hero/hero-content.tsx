@@ -38,19 +38,19 @@ export function HeroContent({
         </p>
 
         {/* CTA */}
-        {latestVideo && (
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+        <div className="flex flex-wrap items-center gap-4 pt-2">
+          {latestVideo && (
             <Button asChild size="lg" className="bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)">
               <Link href={`/story/${latestVideo.id}`}>
                 <RiPlayCircleFill className="mr-2 h-5 w-5" />
                 Watch Latest Story
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-(--color-text-subtle) text-(--color-text-primary) hover:border-(--color-crimson) hover:text-(--color-crimson)">
-              <Link href="/stories">Browse All Stories</Link>
-            </Button>
-          </div>
-        )}
+          )}
+          <Button asChild variant="outline" size="lg" className="border-(--color-text-subtle) text-(--color-text-primary) hover:border-(--color-crimson) hover:text-(--color-crimson)">
+            <Link href="/stories">Browse All Stories</Link>
+          </Button>
+        </div>
       </div>
     </div>
   )

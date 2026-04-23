@@ -24,55 +24,55 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero — full viewport cinematic intro */}
-      <Suspense fallback={<HeroSkeleton />}>
-        <SectionErrorBoundary name="hero">
+      <SectionErrorBoundary name="hero">
+        <Suspense fallback={<HeroSkeleton />}>
           <HeroSection />
-        </SectionErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </SectionErrorBoundary>
 
       {/* Remaining sections in a contained layout */}
       <div className="mx-auto max-w-7xl space-y-20 px-4 py-16">
         {/* 2. Latest Stories — horizontal scroll row */}
-        <Suspense fallback={<CategoryRowSkeleton />}>
-          <SectionErrorBoundary name="latest stories">
+        <SectionErrorBoundary name="latest stories">
+          <Suspense fallback={<CategoryRowSkeleton />}>
             <LatestStoriesSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 3. Browse by Category — grid of playlist cards */}
-        <Suspense fallback={<CategoryGridSkeleton />}>
-          <SectionErrorBoundary name="categories">
+        <SectionErrorBoundary name="categories">
+          <Suspense fallback={<CategoryGridSkeleton />}>
             <CategoryGridSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 4. Featured Story — Editor's Pick cinematic layout */}
-        <Suspense fallback={<FeaturedStorySkeleton />}>
-          <SectionErrorBoundary name="featured story">
+        <SectionErrorBoundary name="featured story">
+          <Suspense fallback={<FeaturedStorySkeleton />}>
             <FeaturedSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 5. Most Watched — top 6 with rank badges */}
-        <Suspense fallback={<MostWatchedSkeleton />}>
-          <SectionErrorBoundary name="most watched stories">
+        <SectionErrorBoundary name="most watched stories">
+          <Suspense fallback={<MostWatchedSkeleton />}>
             <MostWatchedSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 6. Channel Stats — subscribers, videos, views */}
-        <Suspense fallback={<ChannelStatsSkeleton />}>
-          <SectionErrorBoundary name="channel stats">
+        <SectionErrorBoundary name="channel stats">
+          <Suspense fallback={<ChannelStatsSkeleton />}>
             <ChannelStatsSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 7. Fresh Drops — uncategorized (only if any exist) */}
-        <Suspense fallback={<FreshDropsSkeleton />}>
-          <SectionErrorBoundary name="fresh drops">
+        <SectionErrorBoundary name="fresh drops">
+          <Suspense fallback={<FreshDropsSkeleton />}>
             <FreshDropsSection />
-          </SectionErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </SectionErrorBoundary>
 
         {/* 8. Submit CTA — static, no data needed */}
         <SubmitCta />
