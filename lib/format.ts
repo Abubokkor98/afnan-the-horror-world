@@ -13,17 +13,13 @@ const relativeFormatter = new Intl.RelativeTimeFormat("en", {
   style: "long",
 })
 
+const compactNumberFormatter = new Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+})
+
 export function formatCompactNumber(count: number): string {
-  if (count >= 1_000_000_000) {
-    return `${(count / 1_000_000_000).toFixed(1).replace(/\.0$/, "")}B`
-  }
-  if (count >= 1_000_000) {
-    return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`
-  }
-  if (count >= 1_000) {
-    return `${(count / 1_000).toFixed(1).replace(/\.0$/, "")}K`
-  }
-  return `${count}`
+  return compactNumberFormatter.format(count)
 }
 
 export function formatViewCount(count: number): string {
