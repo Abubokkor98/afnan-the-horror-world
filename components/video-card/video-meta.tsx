@@ -1,4 +1,5 @@
-import { formatViewCount, formatTimeAgo } from "@/lib/format"
+import { formatViewCount } from "@/lib/format"
+import { TimeAgo } from "@/components/video-card/time-ago"
 
 interface VideoMetaProps {
   title: string
@@ -8,7 +9,6 @@ interface VideoMetaProps {
 
 export function VideoMeta({ title, viewCount, publishedAt }: VideoMetaProps) {
   const views = formatViewCount(viewCount)
-  const timeAgo = formatTimeAgo(publishedAt)
 
   return (
     <div className="space-y-1 px-1 pt-2">
@@ -16,7 +16,7 @@ export function VideoMeta({ title, viewCount, publishedAt }: VideoMetaProps) {
         {title}
       </h3>
       <p className="text-xs text-(--color-text-subtle)">
-        {views} · {timeAgo}
+        {views} · <TimeAgo date={publishedAt} />
       </p>
     </div>
   )

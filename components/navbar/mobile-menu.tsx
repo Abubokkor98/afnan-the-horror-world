@@ -7,6 +7,7 @@ import { RiMenuLine, RiSearchLine, RiCloseLine } from "@remixicon/react"
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -49,6 +50,7 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
         >
           <SheetHeader>
             <SheetTitle className="text-(--color-text-primary)">Menu</SheetTitle>
+            <SheetDescription className="sr-only">Site navigation menu</SheetDescription>
           </SheetHeader>
 
           {/* Mobile search */}

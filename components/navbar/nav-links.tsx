@@ -1,14 +1,17 @@
+"use client"
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import type { Playlist } from "@/types/youtube"
 
 interface NavLinksProps {
   playlists: Playlist[]
-  currentPath: string
 }
 
 const MAX_VISIBLE_LINKS = 5
 
-export function NavLinks({ playlists, currentPath }: NavLinksProps) {
+export function NavLinks({ playlists }: NavLinksProps) {
+  const currentPath = usePathname()
   const visiblePlaylists = playlists.slice(0, MAX_VISIBLE_LINKS)
 
   return (

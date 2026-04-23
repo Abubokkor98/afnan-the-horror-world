@@ -10,9 +10,10 @@ interface CategoryRowProps {
   title: string
   href?: string
   videos: Video[]
+  preloadCount?: number
 }
 
-export function CategoryRow({ title, href, videos }: CategoryRowProps) {
+export function CategoryRow({ title, href, videos, preloadCount = 0 }: CategoryRowProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   if (videos.length === 0) return null
@@ -39,7 +40,7 @@ export function CategoryRow({ title, href, videos }: CategoryRowProps) {
         >
           {videos.map((video, index) => (
             <div key={video.id} className="w-64 shrink-0 sm:w-72">
-              <VideoCard video={video} priority={index < 2} />
+              <VideoCard video={video} priority={index < preloadCount} />
             </div>
           ))}
         </div>

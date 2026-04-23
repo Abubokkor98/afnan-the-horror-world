@@ -46,8 +46,8 @@ export default async function RootLayout({
       className={`${creepster.variable} ${oswald.variable} ${outfit.variable} antialiased`}
     >
       <body className="flex min-h-svh flex-col">
-        <Navbar playlists={playlists} currentPath="/" />
-        <main className="flex-1">{children}</main>
+        <Navbar playlists={playlists} />
+        <div className="flex-1">{children}</div>
         <Footer playlists={playlists} />
       </body>
     </html>
