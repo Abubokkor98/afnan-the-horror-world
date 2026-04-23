@@ -42,7 +42,8 @@ export default async function StoryPage({ params }: StoryPageProps) {
   const timestamps = parseTimestamps(video.description)
   const country = parseCountry(video.description)
   const related = await getRelatedVideos(video.categorySlug, id)
-  const storyUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/story/${id}`
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
+  const storyUrl = siteUrl ? `${siteUrl}/story/${id}` : `/story/${id}`
 
   const jsonLd = {
     "@context": "https://schema.org",
