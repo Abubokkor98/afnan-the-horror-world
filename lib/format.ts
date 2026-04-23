@@ -13,17 +13,21 @@ const relativeFormatter = new Intl.RelativeTimeFormat("en", {
   style: "long",
 })
 
-export function formatViewCount(count: number): string {
+export function formatCompactNumber(count: number): string {
   if (count >= 1_000_000_000) {
-    return `${(count / 1_000_000_000).toFixed(1).replace(/\.0$/, "")}B views`
+    return `${(count / 1_000_000_000).toFixed(1).replace(/\.0$/, "")}B`
   }
   if (count >= 1_000_000) {
-    return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M views`
+    return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`
   }
   if (count >= 1_000) {
-    return `${(count / 1_000).toFixed(1).replace(/\.0$/, "")}K views`
+    return `${(count / 1_000).toFixed(1).replace(/\.0$/, "")}K`
   }
-  return `${count} views`
+  return `${count}`
+}
+
+export function formatViewCount(count: number): string {
+  return `${formatCompactNumber(count)} views`
 }
 
 export function formatTimeAgo(date: string): string {

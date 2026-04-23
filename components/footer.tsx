@@ -55,7 +55,9 @@ export function Footer({ playlists }: FooterProps) {
             <h3 className="text-sm font-semibold">Connect</h3>
             <div className="flex gap-3">
               <SocialIcon href="https://youtube.com/@AfnanTheHorrorWorldBD" icon={RiYoutubeFill} label="YouTube" />
+              {/* TODO: Replace with real Facebook page URL */}
               <SocialIcon href="https://facebook.com" icon={RiFacebookFill} label="Facebook" />
+              {/* TODO: Replace with real contact email */}
               <SocialIcon href="mailto:contact@example.com" icon={RiMailLine} label="Email" />
             </div>
           </div>
@@ -91,11 +93,12 @@ function SocialIcon({
   icon: React.ComponentType<{ className?: string }>
   label: string
 }) {
+  const isExternal = !href.startsWith("mailto:")
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
       aria-label={label}
       className="rounded-full bg-(--color-bg-elevated) p-2.5 transition-colors hover:bg-(--color-crimson)"
     >

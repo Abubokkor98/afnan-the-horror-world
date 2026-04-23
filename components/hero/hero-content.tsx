@@ -2,7 +2,7 @@ import Link from "next/link"
 import { RiPlayCircleFill, RiGroupFill } from "@remixicon/react"
 import { Button } from "@/components/ui/button"
 import type { Video } from "@/types/youtube"
-import { formatViewCount } from "@/lib/format"
+import { formatCompactNumber } from "@/lib/format"
 
 interface HeroContentProps {
   latestVideo: Video | null
@@ -13,7 +13,7 @@ export function HeroContent({
   latestVideo,
   subscriberCount,
 }: HeroContentProps) {
-  const formattedSubs = formatViewCount(subscriberCount).replace(" views", "")
+  const formattedSubs = formatCompactNumber(subscriberCount)
 
   return (
     <div className="relative z-10 mx-auto max-w-7xl px-4 py-20">

@@ -26,7 +26,7 @@ export function FreshDrops({ videos }: FreshDropsProps) {
           href="/stories?filter=uncategorized"
           className="text-sm font-medium text-(--color-crimson) transition-colors hover:text-(--color-crimson-hover)"
         >
-          View all published stories →
+          View all uncategorized →
         </Link>
       </div>
       <p className="text-sm text-(--color-text-muted)" title="These stories will be categorized soon">

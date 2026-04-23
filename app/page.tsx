@@ -1,65 +1,80 @@
-import { Hero } from "@/components/hero/hero"
-import { CategoryRow } from "@/components/category-row/category-row"
-import { CategoryGrid } from "@/components/category-grid/category-grid"
-import { FeaturedStory } from "@/components/featured-story/featured-story"
-import { ChannelStats } from "@/components/channel-stats/channel-stats"
-import { FreshDrops } from "@/components/fresh-drops"
-import { MostWatched } from "@/components/most-watched"
+import { Suspense } from "react"
+import { SectionErrorBoundary } from "@/components/section-error-boundary"
+import { HeroSection } from "@/app/sections/hero-section"
+import { LatestStoriesSection } from "@/app/sections/latest-stories-section"
+import { CategoryGridSection } from "@/app/sections/category-grid-section"
+import { FeaturedSection } from "@/app/sections/featured-section"
+import { MostWatchedSection } from "@/app/sections/most-watched-section"
+import { ChannelStatsSection } from "@/app/sections/channel-stats-section"
+import { FreshDropsSection } from "@/app/sections/fresh-drops-section"
 import { SubmitCta } from "@/components/submit-cta"
-import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
-import { getLatestVideos } from "@/lib/youtube/video/get-latest-videos"
-import { getMostWatchedVideos } from "@/lib/youtube/video/get-most-watched-videos"
-import { getUncategorizedVideos } from "@/lib/youtube/video/get-uncategorized-videos"
-import { getChannelInfo } from "@/lib/youtube/channel/get-channel-info"
-import { getVideo } from "@/lib/youtube/video/get-video"
-import { FEATURED_VIDEO_ID } from "@/config/featured"
+import {
+  HeroSkeleton,
+  CategoryRowSkeleton,
+  CategoryGridSkeleton,
+  FeaturedStorySkeleton,
+} from "@/components/skeletons/home-skeletons"
+import {
+  MostWatchedSkeleton,
+  ChannelStatsSkeleton,
+  FreshDropsSkeleton,
+} from "@/components/skeletons/section-skeletons"
 
-export default async function HomePage() {
-  const [playlists, latestVideos, mostWatched, uncategorized, channel, featuredVideo] =
-    await Promise.all([
-      getSortedPlaylists(),
-      getLatestVideos(10),
-      getMostWatchedVideos(6),
-      getUncategorizedVideos(),
-      getChannelInfo(),
-      getVideo(FEATURED_VIDEO_ID),
-    ])
-
-  const heroVideo = latestVideos[0] ?? null
-
+export default function HomePage() {
   return (
     <>
       {/* 1. Hero — full viewport cinematic intro */}
-      <Hero
-        latestVideo={heroVideo}
-        subscriberCount={channel?.subscriberCount ?? 0}
-      />
+      <Suspense fallback={<HeroSkeleton />}>
+        <SectionErrorBoundary name="hero">
+          <HeroSection />
+        </SectionErrorBoundary>
+      </Suspense>
 
       {/* Remaining sections in a contained layout */}
       <div className="mx-auto max-w-7xl space-y-20 px-4 py-16">
         {/* 2. Latest Stories — horizontal scroll row */}
-        <CategoryRow
-          title="Latest Stories"
-          href="/stories"
-          videos={latestVideos}
-        />
+        <Suspense fallback={<CategoryRowSkeleton />}>
+          <SectionErrorBoundary name="latest stories">
+            <LatestStoriesSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
         {/* 3. Browse by Category — grid of playlist cards */}
-        <CategoryGrid playlists={playlists} />
+        <Suspense fallback={<CategoryGridSkeleton />}>
+          <SectionErrorBoundary name="categories">
+            <CategoryGridSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
         {/* 4. Featured Story — Editor's Pick cinematic layout */}
-        {featuredVideo && <FeaturedStory video={featuredVideo} />}
+        <Suspense fallback={<FeaturedStorySkeleton />}>
+          <SectionErrorBoundary name="featured story">
+            <FeaturedSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
         {/* 5. Most Watched — top 6 with rank badges */}
-        <MostWatched videos={mostWatched} />
+        <Suspense fallback={<MostWatchedSkeleton />}>
+          <SectionErrorBoundary name="most watched stories">
+            <MostWatchedSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
         {/* 6. Channel Stats — subscribers, videos, views */}
-        {channel && <ChannelStats channel={channel} />}
+        <Suspense fallback={<ChannelStatsSkeleton />}>
+          <SectionErrorBoundary name="channel stats">
+            <ChannelStatsSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
         {/* 7. Fresh Drops — uncategorized (only if any exist) */}
-        <FreshDrops videos={uncategorized} />
+        <Suspense fallback={<FreshDropsSkeleton />}>
+          <SectionErrorBoundary name="fresh drops">
+            <FreshDropsSection />
+          </SectionErrorBoundary>
+        </Suspense>
 
-        {/* 8. Submit CTA */}
+        {/* 8. Submit CTA — static, no data needed */}
         <SubmitCta />
       </div>
     </>

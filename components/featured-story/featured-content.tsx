@@ -21,7 +21,11 @@ export function FeaturedContent({ video }: FeaturedContentProps) {
     month: "long",
     day: "numeric",
   })
-  const excerpt = video.description.split("\n")[0]?.slice(0, 200) ?? ""
+  const firstLine = video.description.split("\n")[0] ?? ""
+  const excerpt =
+    firstLine.length <= 200
+      ? firstLine
+      : firstLine.slice(0, firstLine.lastIndexOf(" ", 200)) + "…"
 
   return (
     <div className="flex flex-col justify-center space-y-4 p-6 lg:p-8">

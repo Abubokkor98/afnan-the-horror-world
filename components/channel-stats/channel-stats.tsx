@@ -27,7 +27,11 @@ interface ChannelStatsProps {
 }
 
 export function ChannelStats({ channel }: ChannelStatsProps) {
-  const yearsActive = new Date().getFullYear() - new Date(channel.publishedAt).getFullYear()
+  const parsedYear = new Date(channel.publishedAt).getFullYear()
+  const currentYear = new Date().getFullYear()
+  const yearsActive = Number.isFinite(parsedYear) ? currentYear - parsedYear : null
+  const yearsDisplay =
+    yearsActive === null ? null : yearsActive === 0 ? "Less than a year" : `${yearsActive}+`
 
   return (
     <section className="space-y-6 rounded-2xl bg-(--color-bg-card) p-8">
@@ -48,11 +52,13 @@ export function ChannelStats({ channel }: ChannelStatsProps) {
           label="Total Views"
           value={formatCompact(channel.viewCount)}
         />
-        <StatCard
-          icon={RiCalendarFill}
-          label="Years Active"
-          value={`${yearsActive}+`}
-        />
+        {yearsDisplay && (
+          <StatCard
+            icon={RiCalendarFill}
+            label="Years Active"
+            value={yearsDisplay}
+          />
+        )}
       </div>
       <p className="text-center text-sm text-(--color-text-muted)">
         All stories are real. Afnan personally reviews every submission before narrating.
