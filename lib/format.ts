@@ -73,8 +73,26 @@ export function titleToSlug(title: string): string {
   return title
     .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[^\p{L}\p{M}\p{N}\s-]/gu, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "")
+}
+
+export function durationToMinutes(iso8601: string): number {
+  const match = iso8601.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+  if (!match) return 0
+  const hours = parseInt(match[1] ?? "0", 10)
+  const minutes = parseInt(match[2] ?? "0", 10)
+  const seconds = parseInt(match[3] ?? "0", 10)
+  return hours * 60 + minutes + seconds / 60
+}
+
+export function formatDate(date: string): string {
+  return new Date(date).toLocaleDateString("en", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  })
 }

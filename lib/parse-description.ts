@@ -36,3 +36,14 @@ export function parseCountry(description: string): string | null {
   const match = description.match(COUNTRY_PATTERN)
   return match ? match[1].trim() : null
 }
+
+/**
+ * Removes hashtags from description text for clean display.
+ */
+export function stripHashtags(description: string): string {
+  return description
+    .replace(COUNTRY_PATTERN, "")
+    .replace(/#\S+/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+}
