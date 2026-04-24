@@ -3,7 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { RiMenuLine, RiSearchLine, RiCloseLine } from "@remixicon/react"
+import { RiMenuLine, RiSearchLine, RiArrowDownSLine } from "@remixicon/react"
+import type { Playlist } from "@/types/youtube"
 import {
   Sheet,
   SheetContent,
@@ -13,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Separator } from "@/components/ui/separator"
-import type { Playlist } from "@/types/youtube"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 interface MobileMenuProps {
   playlists: Playlist[]
@@ -37,16 +38,16 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
   }
 
   return (
-    <div className="flex items-center gap-2 md:hidden">
+    <div className="lg:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button aria-label="Open menu" className="p-2">
-            <RiMenuLine className="h-6 w-6 text-(--color-text-primary)" />
+          <button aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-(--color-bg-elevated)">
+            <RiMenuLine className="h-5 w-5 text-(--color-text-primary)" />
           </button>
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="w-80 border-l border-(--color-border) bg-(--color-bg-navbar)"
+          className="w-72 border-l border-(--color-border) bg-(--color-bg-navbar)"
         >
           <SheetHeader>
             <SheetTitle className="text-(--color-text-primary)">Menu</SheetTitle>
@@ -54,32 +55,34 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
           </SheetHeader>
 
           {/* Mobile search */}
-          <form onSubmit={handleSearch} className="relative px-4 pt-4">
-            <RiSearchLine className="absolute top-1/2 left-7 h-4 w-4 -translate-y-1/2 text-(--color-text-muted)" />
+          <form onSubmit={handleSearch} className="relative px-4 pt-4" role="search">
+            <label htmlFor="mobile-search" className="sr-only">Search stories</label>
             <input
+              id="mobile-search"
               name="q"
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search stories..."
-              className="h-10 w-full rounded-lg bg-(--color-bg-elevated) pr-4 pl-9 text-sm text-(--color-text-primary) placeholder:text-(--color-text-subtle) focus:ring-2 focus:ring-(--color-crimson) focus:outline-none"
+              placeholder="Search stories…"
+              autoComplete="off"
+              className="h-10 w-full rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) pr-10 pl-4 text-sm text-(--color-text-primary) placeholder:text-(--color-text-subtle) focus:border-(--color-crimson) focus:ring-2 focus:ring-(--color-crimson)/20 focus:outline-none"
             />
+            <button type="submit" aria-label="Search" className="absolute top-1/2 right-7 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center">
+              <RiSearchLine className="h-4 w-4 text-(--color-text-muted)" />
+            </button>
           </form>
 
           <Separator className="my-4 bg-(--color-border)" />
 
           {/* Navigation links */}
-          <nav className="flex flex-col gap-1 px-4">
-            <MobileLink href="/" label="Home" onClick={handleLinkClick} />
-            <MobileLink href="/stories" label="All Stories" onClick={handleLinkClick} />
-            {playlists.map((playlist) => (
-              <MobileLink
-                key={playlist.id}
-                href={`/category/${playlist.slug}`}
-                label={playlist.title}
-                onClick={handleLinkClick}
-              />
-            ))}
+          <nav className="flex flex-col gap-1 px-4" aria-label="Mobile navigation">
+            <MobileLink href="/stories" label="Stories" onClick={handleLinkClick} />
+
+            {/* Browse Categories accordion */}
+            <BrowseAccordion playlists={playlists} onNavigate={handleLinkClick} />
+
+            <MobileLink href="/submit" label="Submit Story" onClick={handleLinkClick} />
+            <MobileLink href="/about" label="About" onClick={handleLinkClick} />
           </nav>
         </SheetContent>
       </Sheet>
@@ -87,13 +90,7 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
   )
 }
 
-interface MobileLinkProps {
-  href: string
-  label: string
-  onClick: () => void
-}
-
-function MobileLink({ href, label, onClick }: MobileLinkProps) {
+function MobileLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
   return (
     <Link
       href={href}
@@ -102,5 +99,30 @@ function MobileLink({ href, label, onClick }: MobileLinkProps) {
     >
       {label}
     </Link>
+  )
+}
+
+function BrowseAccordion({ playlists, onNavigate }: { playlists: Playlist[]; onNavigate: () => void }) {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-(--color-text-muted) transition-colors hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)">
+        Browse Categories
+        <RiArrowDownSLine className="h-4 w-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <div className="ml-3 flex flex-col gap-0.5 border-l border-(--color-bg-elevated) pl-3 pt-1">
+          {playlists.map((playlist) => (
+            <Link
+              key={playlist.id}
+              href={`/category/${playlist.slug}`}
+              onClick={onNavigate}
+              className="rounded-md px-3 py-2 text-sm text-(--color-text-subtle) transition-colors hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
+            >
+              {playlist.title}
+            </Link>
+          ))}
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

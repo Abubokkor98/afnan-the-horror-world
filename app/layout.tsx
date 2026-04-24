@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Creepster, Oswald, Outfit } from "next/font/google"
 import { Navbar } from "@/components/navbar/navbar"
-import { Footer } from "@/components/footer"
+import { Footer } from "@/components/footer/footer"
 import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
 
 import "./globals.css"
