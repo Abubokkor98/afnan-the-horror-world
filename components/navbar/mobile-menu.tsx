@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { RiMenuLine, RiSearchLine, RiArrowDownSLine } from "@remixicon/react"
 import type { Playlist } from "@/types/youtube"
 import {
@@ -24,6 +24,7 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState("")
   const router = useRouter()
+  const currentPath = usePathname()
 
   function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -76,13 +77,13 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
 
           {/* Navigation links */}
           <nav className="flex flex-col gap-1 px-4" aria-label="Mobile navigation">
-            <MobileLink href="/stories" label="Stories" onClick={handleLinkClick} />
+            <MobileLink href="/stories" label="Stories" active={currentPath === "/stories"} onClick={handleLinkClick} />
 
             {/* Browse Categories accordion */}
-            <BrowseAccordion playlists={playlists} onNavigate={handleLinkClick} />
+            <BrowseAccordion playlists={playlists} currentPath={currentPath} onNavigate={handleLinkClick} />
 
-            <MobileLink href="/submit" label="Submit Story" onClick={handleLinkClick} />
-            <MobileLink href="/about" label="About" onClick={handleLinkClick} />
+            <MobileLink href="/submit" label="Submit Story" active={currentPath === "/submit"} onClick={handleLinkClick} />
+            <MobileLink href="/about" label="About" active={currentPath === "/about"} onClick={handleLinkClick} />
           </nav>
         </SheetContent>
       </Sheet>
@@ -90,37 +91,60 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
   )
 }
 
-function MobileLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
+function MobileLink({ href, label, active, onClick }: { href: string; label: string; active: boolean; onClick: () => void }) {
   return (
     <Link
       href={href}
       onClick={onClick}
-      className="rounded-md px-3 py-2.5 text-sm font-medium text-(--color-text-muted) transition-colors hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
+      {...(active && { "aria-current": "page" as const })}
+      className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+        active
+          ? "bg-(--color-bg-elevated) text-(--color-crimson)"
+          : "text-(--color-text-muted) hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
+      }`}
     >
       {label}
     </Link>
   )
 }
 
-function BrowseAccordion({ playlists, onNavigate }: { playlists: Playlist[]; onNavigate: () => void }) {
+function BrowseAccordion({ playlists, currentPath, onNavigate }: { playlists: Playlist[]; currentPath: string; onNavigate: () => void }) {
+  const isActive = currentPath.startsWith("/category")
+
   return (
     <Collapsible>
-      <CollapsibleTrigger className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-(--color-text-muted) transition-colors hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)">
+      <CollapsibleTrigger
+        className={`flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+          isActive
+            ? "bg-(--color-bg-elevated) text-(--color-crimson)"
+            : "text-(--color-text-muted) hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
+        }`}
+      >
         Browse Categories
         <RiArrowDownSLine className="h-4 w-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
       </CollapsibleTrigger>
       <CollapsibleContent>
         <div className="ml-3 flex flex-col gap-0.5 border-l border-(--color-bg-elevated) pl-3 pt-1">
-          {playlists.map((playlist) => (
-            <Link
-              key={playlist.id}
-              href={`/category/${playlist.slug}`}
-              onClick={onNavigate}
-              className="rounded-md px-3 py-2 text-sm text-(--color-text-subtle) transition-colors hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
-            >
-              {playlist.title}
-            </Link>
-          ))}
+          {playlists.map((playlist) => {
+            const categoryPath = `/category/${playlist.slug}`
+            const isCurrent = currentPath === categoryPath
+
+            return (
+              <Link
+                key={playlist.id}
+                href={categoryPath}
+                onClick={onNavigate}
+                {...(isCurrent && { "aria-current": "page" as const })}
+                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                  isCurrent
+                    ? "bg-(--color-bg-elevated) text-(--color-crimson)"
+                    : "text-(--color-text-subtle) hover:bg-(--color-bg-elevated) hover:text-(--color-text-primary)"
+                }`}
+              >
+                {playlist.title}
+              </Link>
+            )
+          })}
         </div>
       </CollapsibleContent>
     </Collapsible>
