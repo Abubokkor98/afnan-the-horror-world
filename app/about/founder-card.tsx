@@ -4,7 +4,7 @@ import { RiFacebookFill, RiTwitterXFill, RiYoutubeFill, RiInstagramFill } from "
 interface FounderCardProps {
   name: string
   role: string
-  bio: string
+  bio?: string
   avatarUrl: string
 }
 
@@ -17,7 +17,7 @@ export function FounderCard({ name, role, bio, avatarUrl }: FounderCardProps) {
       <div className="space-y-2 text-center sm:text-left">
         <h3 className="text-xl font-semibold">{name}</h3>
         <p className="text-sm font-medium text-(--color-crimson)">{role}</p>
-        <p className="text-sm leading-relaxed text-(--color-text-body)">{bio}</p>
+        {bio && <p className="text-sm leading-relaxed text-(--color-text-body)">{bio}</p>}
         <div className="flex justify-center gap-2 pt-1 sm:justify-start">
           {SOCIAL_ICONS.map((Icon, i) => (
             <span key={i} className="rounded-full bg-(--color-bg-elevated) p-2 text-(--color-text-subtle) transition-colors hover:text-(--color-crimson)">

@@ -86,10 +86,12 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <Separator className="bg-(--color-border)" />
-
-      {/* Community Stats */}
-      {channel && <AboutStats channel={channel} />}
+      {channel && (
+        <>
+          <Separator className="bg-(--color-border)" />
+          <AboutStats channel={channel} />
+        </>
+      )}
 
       <Separator className="bg-(--color-border)" />
 

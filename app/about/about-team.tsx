@@ -51,7 +51,7 @@ export function AboutTeam() {
       <FounderCard
         name={founder.name}
         role={founder.role}
-        bio={founder.bio ?? ""}
+        bio={founder.bio}
         avatarUrl={founder.avatarUrl}
       />
 
