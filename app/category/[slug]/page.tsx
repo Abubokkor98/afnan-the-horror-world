@@ -10,7 +10,8 @@ interface CategoryPageProps {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  const slug = decodeURIComponent(rawSlug)
   const playlists = await getAllPlaylists()
   const playlist = playlists.find((p) => p.slug === slug)
   if (!playlist) return { title: "Category Not Found" }
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  const slug = decodeURIComponent(rawSlug)
   const playlists = await getAllPlaylists()
   const playlist = playlists.find((p) => p.slug === slug)
 
