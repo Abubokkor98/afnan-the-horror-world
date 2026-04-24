@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Playlist } from "@/types/youtube"
 import { DesktopNav } from "@/components/navbar/desktop-nav"
 import { SearchInput } from "@/components/navbar/search-input"
-import { MobileMenu } from "@/components/navbar/mobile-menu"
+import { MobileMenu } from "@/components/navbar/mobile-nav/mobile-menu"
 import { SubscribeButton } from "@/components/navbar/subscribe-button"
 
 interface NavbarProps {
