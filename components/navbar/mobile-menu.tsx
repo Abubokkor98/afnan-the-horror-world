@@ -67,7 +67,7 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
               autoComplete="off"
               className="h-10 w-full rounded-lg border border-(--color-bg-elevated) bg-(--color-bg-card) pr-10 pl-4 text-sm text-(--color-text-primary) placeholder:text-(--color-text-subtle) focus:border-(--color-crimson) focus:ring-2 focus:ring-(--color-crimson)/20 focus:outline-none"
             />
-            <button type="submit" aria-label="Search" className="absolute top-1/2 right-7 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center">
+            <button type="submit" disabled={!query.trim()} aria-label="Search" className="absolute top-1/2 right-7 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center disabled:cursor-not-allowed disabled:opacity-40">
               <RiSearchLine className="h-4 w-4 text-(--color-text-muted)" />
             </button>
           </form>

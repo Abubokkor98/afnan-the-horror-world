@@ -1,3 +1,4 @@
+import type { ComponentType } from "react"
 import { RiYoutubeFill, RiFacebookFill, RiMailLine } from "@remixicon/react"
 
 const YOUTUBE_URL = "https://youtube.com/@AfnanTheHorrorWorldBD"
@@ -6,7 +7,7 @@ const EMAIL = "afnanthehorrorworldbd@gmail.com"
 
 interface SocialLink {
   href: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: ComponentType<{ className?: string }>
   label: string
   isExternal: boolean
 }

@@ -18,7 +18,6 @@ interface DesktopNavProps {
 }
 
 const NAV_ITEMS = [
-  { href: "/stories", label: "Stories" },
   { href: "/submit", label: "Submit" },
   { href: "/about", label: "About" },
 ]
@@ -76,7 +75,7 @@ export function DesktopNav({ playlists }: DesktopNavProps) {
         </NavigationMenuItem>
 
         {/* Submit & About links */}
-        {NAV_ITEMS.slice(1).map((item) => (
+        {NAV_ITEMS.map((item) => (
           <NavigationMenuItem key={item.href}>
             <NavigationMenuLink asChild>
               <Link href={item.href} className={navLinkClass(currentPath === item.href)}>
