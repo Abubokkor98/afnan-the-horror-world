@@ -3,7 +3,7 @@
 import Link from "next/link"
 import type { Video, Playlist } from "@/types/youtube"
 import { Badge } from "@/components/ui/badge"
-import { VideoGrid } from "@/components/video-grid"
+import { VideoGrid } from "@/components/video/video-grid"
 
 interface SearchResultsProps {
   query: string

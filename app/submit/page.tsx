@@ -7,9 +7,9 @@ import {
   RiPhoneLine,
 } from "@remixicon/react"
 import { Button } from "@/components/ui/button"
-import { SubmitTemplate } from "@/app/submit/submit-template"
-import { EligibilityItem } from "@/app/submit/eligibility-item"
-import { StepCard } from "@/app/submit/step-card"
+import { SubmitTemplate } from "@/components/submit/submit-template"
+import { EligibilityItem } from "@/components/submit/eligibility-item"
+import { StepCard } from "@/components/submit/step-card"
 
 const SUBMISSION_EMAIL = "afnanthehorrorworldbd@gmail.com"
 const MAILTO_SUBJECT = encodeURIComponent("ভয়ের ঘটনা — Afnan The Horror World")

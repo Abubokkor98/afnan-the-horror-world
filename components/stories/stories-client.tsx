@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import type { Video, Playlist } from "@/types/youtube"
 import { durationToMinutes } from "@/lib/format"
-import { VideoGrid } from "@/components/video-grid"
-import { StoriesFilterBar } from "@/app/stories/stories-filter-bar"
+import { VideoGrid } from "@/components/video/video-grid"
+import { StoriesFilterBar } from "@/components/stories/stories-filter-bar"
 
 interface StoriesClientProps {
   videos: Video[]

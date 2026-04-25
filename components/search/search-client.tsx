@@ -4,7 +4,7 @@ import { use, useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { RiSearchLine } from "@remixicon/react"
 import type { Video, Playlist } from "@/types/youtube"
-import { SearchResults } from "@/app/search/search-results"
+import { SearchResults } from "@/components/search/search-results"
 
 interface SearchClientProps {
   initialQuery: string

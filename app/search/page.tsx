@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { getAllVideos } from "@/lib/youtube/video/get-all-videos"
 import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
-import { SearchClient } from "@/app/search/search-client"
+import { SearchClient } from "@/components/search/search-client"
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>

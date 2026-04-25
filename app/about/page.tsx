@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { RiMailLine } from "@remixicon/react"
 import { getChannelInfo } from "@/lib/youtube/channel/get-channel-info"
 import { Separator } from "@/components/ui/separator"
-import { AboutTeam } from "@/app/about/about-team"
-import { AboutStats } from "@/app/about/about-stats"
-import { ShowSchedule } from "@/app/about/show-schedule"
+import { AboutTeam } from "@/components/about/about-team"
+import { AboutStats } from "@/components/about/about-stats"
+import { ShowSchedule } from "@/components/about/show-schedule"
 
 export const metadata: Metadata = {
   title: "About | Afnan The Horror World",

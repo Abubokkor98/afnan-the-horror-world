@@ -1,5 +1,5 @@
 import type { Video } from "@/types/youtube"
-import { VideoCard } from "@/components/video-card/video-card"
+import { VideoCard } from "@/components/video/video-card"
 
 interface VideoGridProps {
   videos: Video[]

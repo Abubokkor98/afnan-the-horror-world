@@ -1,5 +1,5 @@
-import { FounderCard } from "@/app/about/founder-card"
-import { TeamCard } from "@/app/about/team-card"
+import { FounderCard } from "@/components/about/founder-card"
+import { TeamCard } from "@/components/about/team-card"
 
 interface TeamMember {
   name: string

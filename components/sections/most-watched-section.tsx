@@ -1,6 +1,6 @@
 import { getMostWatchedVideos } from "@/lib/youtube/video/get-most-watched-videos"
-import { MostWatched } from "@/components/most-watched"
-import { SectionError } from "@/components/section-error"
+import { MostWatched } from "@/components/video/most-watched"
+import { SectionError } from "@/components/section-error/section-error"
 import type { Video } from "@/types/youtube"
 
 const MOST_WATCHED_COUNT = 6

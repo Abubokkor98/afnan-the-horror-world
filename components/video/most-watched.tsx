@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { RiFireFill } from "@remixicon/react"
-import { CategoryBadge } from "@/components/video-card/category-badge"
+import { CategoryBadge } from "@/components/video/category-badge"
 import type { Video } from "@/types/youtube"
 import { formatViewCount, formatDuration, formatTimeAgo } from "@/lib/format"
 

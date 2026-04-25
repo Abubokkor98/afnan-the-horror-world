@@ -3,7 +3,7 @@
 import { startTransition } from "react"
 import { useRouter } from "next/navigation"
 import { ErrorBoundary } from "react-error-boundary"
-import { SectionError } from "@/components/section-error"
+import { SectionError } from "@/components/section-error/section-error"
 
 interface SectionErrorBoundaryProps {
   name: string

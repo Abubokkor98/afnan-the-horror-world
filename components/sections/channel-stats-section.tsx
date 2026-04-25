@@ -1,6 +1,6 @@
 import { getChannelInfo } from "@/lib/youtube/channel/get-channel-info"
 import { ChannelStats } from "@/components/channel-stats/channel-stats"
-import { SectionError } from "@/components/section-error"
+import { SectionError } from "@/components/section-error/section-error"
 import type { Channel } from "@/types/youtube"
 
 export async function ChannelStatsSection() {

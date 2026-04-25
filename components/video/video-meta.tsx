@@ -1,5 +1,5 @@
 import { formatViewCount } from "@/lib/format"
-import { TimeAgo } from "@/components/video-card/time-ago"
+import { TimeAgo } from "@/components/video/time-ago"
 
 interface VideoMetaProps {
   title: string
