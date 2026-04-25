@@ -22,15 +22,21 @@ interface StoryPageProps {
   params: Promise<{ id: string }>
 }
 
-export async function generateMetadata({ params }: StoryPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: StoryPageProps): Promise<Metadata> {
   const { id } = await params
   const video = await getVideo(id)
   if (!video) return { title: "Story Not Found" }
 
   return {
-    title: `${video.title} | Afnan's Horror World`,
+    title: `${video.title} | Afnan The Horror World`,
     description: video.description.slice(0, 160),
-    openGraph: { title: video.title, images: [{ url: video.thumbnail }], type: "video.other" },
+    openGraph: {
+      title: video.title,
+      images: [{ url: video.thumbnail }],
+      type: "video.other",
+    },
   }
 }
 
@@ -57,7 +63,10 @@ export default async function StoryPage({ params }: StoryPageProps) {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+      />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-8 lg:col-span-2">
@@ -73,7 +82,9 @@ export default async function StoryPage({ params }: StoryPageProps) {
       {related.length > 0 && (
         <section className="mt-16 space-y-6 border-t border-(--color-border) pt-12">
           <h2 className="text-2xl font-semibold">
-            {video.categorySlug ? "More Stories in This Category" : "More Stories"}
+            {video.categorySlug
+              ? "More Stories in This Category"
+              : "More Stories"}
           </h2>
           <VideoGrid videos={related} />
         </section>
@@ -101,16 +112,33 @@ async function getRelatedVideos(categorySlug: string, currentId: string) {
   }
 }
 
-function StoryHeader({ video, country }: { video: Video; country: string | null }) {
+function StoryHeader({
+  video,
+  country,
+}: {
+  video: Video
+  country: string | null
+}) {
   return (
     <div className="space-y-3">
-      <h1 className="text-2xl font-semibold leading-tight lg:text-3xl">{video.title}</h1>
+      <h1 className="text-2xl leading-tight font-semibold lg:text-3xl">
+        {video.title}
+      </h1>
       <div className="flex flex-wrap items-center gap-3 text-sm text-(--color-text-subtle)">
         <CategoryBadge category={video.categoryLabel} />
         {country && <Badge variant="outline">{country}</Badge>}
-        <span className="flex items-center gap-1"><RiEyeLine className="h-3.5 w-3.5" />{formatViewCount(video.viewCount)}</span>
-        <span className="flex items-center gap-1"><RiTimeLine className="h-3.5 w-3.5" />{formatDuration(video.duration)}</span>
-        <span className="flex items-center gap-1"><RiCalendarLine className="h-3.5 w-3.5" />{formatTimeAgo(video.publishedAt)}</span>
+        <span className="flex items-center gap-1">
+          <RiEyeLine className="h-3.5 w-3.5" />
+          {formatViewCount(video.viewCount)}
+        </span>
+        <span className="flex items-center gap-1">
+          <RiTimeLine className="h-3.5 w-3.5" />
+          {formatDuration(video.duration)}
+        </span>
+        <span className="flex items-center gap-1">
+          <RiCalendarLine className="h-3.5 w-3.5" />
+          {formatTimeAgo(video.publishedAt)}
+        </span>
       </div>
     </div>
   )

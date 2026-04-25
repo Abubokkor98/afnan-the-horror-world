@@ -36,8 +36,13 @@ export function Footer({ playlists }: FooterProps) {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-(--color-text-subtle)">Pages</h3>
-            <nav className="flex flex-col items-center gap-2.5 md:items-start" aria-label="Footer navigation">
+            <h3 className="text-sm font-semibold tracking-wider text-(--color-text-subtle) uppercase">
+              Pages
+            </h3>
+            <nav
+              className="flex flex-col items-center gap-2.5 md:items-start"
+              aria-label="Footer navigation"
+            >
               {SITE_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -55,12 +60,12 @@ export function Footer({ playlists }: FooterProps) {
 
           {/* CTA */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-(--color-text-subtle)">
+            <h3 className="text-sm font-semibold tracking-wider text-(--color-text-subtle) uppercase">
               Have a story?
             </h3>
             <p className="mx-auto max-w-xs text-sm leading-relaxed text-(--color-text-muted) md:mx-0">
-              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান — আফনানের কণ্ঠে লক্ষ
-              শ্রোতার কাছে পৌঁছে যাক আপনার গল্প।
+              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান — আফনান ভাইয়ের কণ্ঠে লক্ষ শ্রোতার
+              কাছে পৌঁছে যাক আপনার গল্প।
             </p>
             <Link
               href="/submit"
@@ -76,7 +81,7 @@ export function Footer({ playlists }: FooterProps) {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
           <p className="text-xs text-(--color-text-subtle)">
-            © {currentYear} Afnan&apos;s Horror World. All rights reserved.
+            © {currentYear} Afnan The Horror World. All rights reserved.
           </p>
           <p className="text-xs text-(--color-text-subtle)">
             Made with 🖤 for horror fans

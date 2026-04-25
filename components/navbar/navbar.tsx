@@ -16,7 +16,7 @@ export function Navbar({ playlists }: NavbarProps) {
         {/* Logo */}
         <Link href="/" className="shrink-0" translate="no">
           <span className="hero-title text-xl tracking-wide text-(--color-crimson)">
-            Afnan&apos;s Horror World
+            Afnan The Horror World
           </span>
         </Link>
 

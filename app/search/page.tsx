@@ -7,18 +7,23 @@ interface SearchPageProps {
   searchParams: Promise<{ q?: string }>
 }
 
-export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams
   const safeQuery = q
     ?.trim()
     .replace(/[\p{Cc}]/gu, "")
     .replace(/\s+/g, " ")
     .slice(0, 100)
-  const title = safeQuery ? `"${safeQuery}" — Search | Afnan's Horror World` : "Search | Afnan's Horror World"
+  const title = safeQuery
+    ? `"${safeQuery}" — Search | Afnan The Horror World`
+    : "Search | Afnan The Horror World"
 
   return {
     title,
-    description: "Search horror stories narrated by Afnan — find any story by keyword.",
+    description:
+      "Search horror stories narrated by Afnan — find any story by keyword.",
   }
 }
 

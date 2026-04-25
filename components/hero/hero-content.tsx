@@ -28,7 +28,7 @@ export function HeroContent({
 
         {/* Title */}
         <h1 className="hero-title text-5xl leading-tight tracking-wide sm:text-6xl md:text-7xl">
-          Real Horror Stories
+          Afnan The Horror World
         </h1>
 
         {/* Subtitle */}

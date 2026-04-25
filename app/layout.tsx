@@ -28,7 +28,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Afnan's Horror World | Real Horror Stories",
+  title: "Afnan The Horror World | Feel The Real Fear With Us",
   description:
     "Real horror stories narrated by Afnan — from your neighbourhood, from every corner of the world.",
 }

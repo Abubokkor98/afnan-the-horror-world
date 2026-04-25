@@ -9,7 +9,9 @@ interface CategoryPageProps {
   params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
   const { slug: rawSlug } = await params
   const slug = decodeURIComponent(rawSlug)
   const playlists = await getAllPlaylists()
@@ -17,8 +19,10 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   if (!playlist) return { title: "Category Not Found" }
 
   return {
-    title: `${playlist.title} | Afnan's Horror World`,
-    description: playlist.description || `Browse all ${playlist.title} stories narrated by Afnan.`,
+    title: `${playlist.title} | Afnan The Horror World`,
+    description:
+      playlist.description ||
+      `Browse all ${playlist.title} stories narrated by Afnan.`,
   }
 }
 
@@ -40,7 +44,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="space-y-2">
         <h1 className="text-4xl font-semibold">{playlist.title}</h1>
         {playlist.description && (
-          <p className="max-w-2xl text-(--color-text-body)">{playlist.description}</p>
+          <p className="max-w-2xl text-(--color-text-body)">
+            {playlist.description}
+          </p>
         )}
         <p className="text-sm text-(--color-text-subtle)">
           {videos.length} {storyLabel}

@@ -37,11 +37,11 @@ export function CategoryCard({ playlist }: CategoryCardProps) {
           <h3 className="text-lg font-semibold text-(--color-text-primary) transition-colors group-hover:text-(--color-crimson)">
             {playlist.title}
           </h3>
-          {playlist.description && (
+          {/* {playlist.description && (
             <p className="line-clamp-1 text-sm text-(--color-text-muted)">
               {playlist.description}
             </p>
-          )}
+          )} */}
         </div>
       </article>
     </Link>

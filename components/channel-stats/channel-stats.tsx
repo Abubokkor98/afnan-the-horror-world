@@ -61,7 +61,7 @@ export function ChannelStats({ channel }: ChannelStatsProps) {
         )}
       </div>
       <p className="text-center text-sm text-(--color-text-muted)">
-        All stories are real. Afnan personally reviews every submission before narrating.
+        All stories are real. Afnan bhai personally reviews every submission before narrating.
       </p>
     </section>
   )
