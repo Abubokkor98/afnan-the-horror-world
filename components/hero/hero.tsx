@@ -10,7 +10,7 @@ export function Hero({ latestVideo, subscriberCount }: HeroProps) {
   const backgroundUrl = latestVideo?.thumbnail ?? ""
 
   return (
-    <section className="grain-overlay vignette relative flex min-h-svh items-center overflow-hidden max-md:min-h-[90vh]">
+    <section className="grain-overlay vignette relative flex min-h-[calc(100svh-5rem)] w-full items-center overflow-hidden">
       {/* Blurred background thumbnail */}
       {backgroundUrl && (
         <div
@@ -28,13 +28,6 @@ export function Hero({ latestVideo, subscriberCount }: HeroProps) {
         latestVideo={latestVideo}
         subscriberCount={subscriberCount}
       />
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="h-10 w-6 rounded-full border-2 border-(--color-text-muted)/40 p-1">
-          <div className="mx-auto h-2 w-1 rounded-full bg-(--color-crimson)" />
-        </div>
-      </div>
     </section>
   )
 }
