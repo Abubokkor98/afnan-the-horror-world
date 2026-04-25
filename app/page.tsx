@@ -1,13 +1,13 @@
 import { Suspense } from "react"
-import { SectionErrorBoundary } from "@/components/section-error-boundary"
-import { HeroSection } from "@/app/sections/hero-section"
-import { LatestStoriesSection } from "@/app/sections/latest-stories-section"
-import { CategoryGridSection } from "@/app/sections/category-grid-section"
-import { FeaturedSection } from "@/app/sections/featured-section"
-import { MostWatchedSection } from "@/app/sections/most-watched-section"
-import { ChannelStatsSection } from "@/app/sections/channel-stats-section"
-import { FreshDropsSection } from "@/app/sections/fresh-drops-section"
-import { SubmitCta } from "@/components/submit-cta"
+import { SectionErrorBoundary } from "@/components/section-error/section-error-boundary"
+import { HeroSection } from "@/components/sections/hero-section"
+import { LatestStoriesSection } from "@/components/sections/latest-stories-section"
+import { CategoryGridSection } from "@/components/sections/category-grid-section"
+import { FeaturedSection } from "@/components/sections/featured-section"
+import { MostWatchedSection } from "@/components/sections/most-watched-section"
+import { ChannelStatsSection } from "@/components/sections/channel-stats-section"
+import { FreshDropsSection } from "@/components/sections/fresh-drops-section"
+import { SubmitCta } from "@/components/submit/submit-cta"
 import {
   HeroSkeleton,
   CategoryRowSkeleton,

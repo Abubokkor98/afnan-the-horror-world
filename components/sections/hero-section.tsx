@@ -1,7 +1,7 @@
 import { getLatestVideos } from "@/lib/youtube/video/get-latest-videos"
 import { getChannelInfo } from "@/lib/youtube/channel/get-channel-info"
 import { Hero } from "@/components/hero/hero"
-import { SectionError } from "@/components/section-error"
+import { SectionError } from "@/components/section-error/section-error"
 import type { Video, Channel } from "@/types/youtube"
 
 export async function HeroSection() {

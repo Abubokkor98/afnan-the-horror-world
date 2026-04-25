@@ -1,8 +1,8 @@
 import Link from "next/link"
 import type { Video } from "@/types/youtube"
-import { VideoThumbnail } from "@/components/video-card/video-thumbnail"
-import { CategoryBadge } from "@/components/video-card/category-badge"
-import { VideoMeta } from "@/components/video-card/video-meta"
+import { VideoThumbnail } from "@/components/video/video-thumbnail"
+import { CategoryBadge } from "@/components/video/category-badge"
+import { VideoMeta } from "@/components/video/video-meta"
 
 interface VideoCardProps {
   video: Video

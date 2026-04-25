@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { getAllVideos } from "@/lib/youtube/video/get-all-videos"
 import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
-import { StoriesClient } from "@/app/stories/stories-client"
+import { StoriesClient } from "@/components/stories/stories-client"
 
 export const metadata: Metadata = {
   title: "All Stories | Afnan The Horror World",

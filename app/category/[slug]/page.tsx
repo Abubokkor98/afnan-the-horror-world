@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 import { getPlaylistVideos } from "@/lib/youtube/video/get-playlist-videos"
-import { VideoGrid } from "@/components/video-grid"
+import { VideoGrid } from "@/components/video/video-grid"
 import { CategoryGrid } from "@/components/category-grid/category-grid"
 
 interface CategoryPageProps {

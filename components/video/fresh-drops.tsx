@@ -1,6 +1,6 @@
 import Link from "next/link"
 import type { Video } from "@/types/youtube"
-import { VideoGrid } from "@/components/video-grid"
+import { VideoGrid } from "@/components/video/video-grid"
 
 interface FreshDropsProps {
   videos: Video[]

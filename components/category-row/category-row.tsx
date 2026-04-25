@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import Link from "next/link"
 import type { Video } from "@/types/youtube"
-import { VideoCard } from "@/components/video-card/video-card"
+import { VideoCard } from "@/components/video/video-card"
 import { ScrollArrows } from "@/components/category-row/scroll-arrows"
 
 interface CategoryRowProps {

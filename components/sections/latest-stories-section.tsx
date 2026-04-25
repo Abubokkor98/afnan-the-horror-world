@@ -1,6 +1,6 @@
 import { getLatestVideos } from "@/lib/youtube/video/get-latest-videos"
 import { CategoryRow } from "@/components/category-row/category-row"
-import { SectionError } from "@/components/section-error"
+import { SectionError } from "@/components/section-error/section-error"
 import type { Video } from "@/types/youtube"
 
 const LATEST_STORIES_COUNT = 10
