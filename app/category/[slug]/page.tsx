@@ -43,11 +43,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Category header */}
       <div className="space-y-2">
         <h1 className="text-4xl font-semibold">{playlist.title}</h1>
-        {playlist.description && (
+        {/* {playlist.description && (
           <p className="max-w-2xl text-(--color-text-body)">
             {playlist.description}
           </p>
-        )}
+        )} */}
         <p className="text-sm text-(--color-text-subtle)">
           {videos.length} {storyLabel}
         </p>
