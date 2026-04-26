@@ -1,3 +1,4 @@
+import { cacheLife, cacheTag } from "next/cache"
 import type { youtube_v3 } from "googleapis"
 import { youtube } from "@/lib/youtube/client"
 
@@ -8,6 +9,10 @@ import { youtube } from "@/lib/youtube/client"
 export async function getVideoDetails(
   videoIds: string[],
 ): Promise<youtube_v3.Schema$Video[]> {
+  "use cache"
+  cacheTag("videos")
+  cacheLife("max")
+
   const batches: string[][] = []
   for (let i = 0; i < videoIds.length; i += 50) {
     batches.push(videoIds.slice(i, i + 50))

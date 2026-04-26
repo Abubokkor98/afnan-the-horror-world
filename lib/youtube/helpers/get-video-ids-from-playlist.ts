@@ -11,7 +11,7 @@ export async function getVideoIdsFromPlaylist(
 ): Promise<string[]> {
   "use cache"
   cacheTag("playlists", `playlist-videos-${playlistId}`)
-  cacheLife("hours")
+  cacheLife("max")
 
   const ids: string[] = []
   let pageToken: string | undefined

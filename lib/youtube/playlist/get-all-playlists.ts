@@ -11,7 +11,7 @@ import type { youtube_v3 } from "googleapis"
 export async function getAllPlaylists(): Promise<Playlist[]> {
   "use cache"
   cacheTag("playlists")
-  cacheLife("hours")
+  cacheLife("max")
 
   const items: youtube_v3.Schema$Playlist[] = []
   let pageToken: string | undefined

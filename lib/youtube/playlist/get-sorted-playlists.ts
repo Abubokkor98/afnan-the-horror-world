@@ -10,7 +10,7 @@ import { CATEGORY_ORDER } from "@/config/category-order"
 export async function getSortedPlaylists(): Promise<Playlist[]> {
   "use cache"
   cacheTag("playlists")
-  cacheLife("hours")
+  cacheLife("max")
 
   const playlists = await getAllPlaylists()
 

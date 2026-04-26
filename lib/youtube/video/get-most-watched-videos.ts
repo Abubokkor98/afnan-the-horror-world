@@ -9,7 +9,7 @@ import { fetchAllPlaylistVideos } from "@/lib/youtube/helpers/fetch-all-playlist
 export async function getMostWatchedVideos(count: number): Promise<Video[]> {
   "use cache"
   cacheTag("most-watched")
-  cacheLife("hours")
+  cacheLife("max")
 
   if (!Number.isInteger(count) || count <= 0) {
     throw new TypeError("Count must be a positive integer")

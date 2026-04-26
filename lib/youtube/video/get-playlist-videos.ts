@@ -14,7 +14,7 @@ export async function getPlaylistVideos(
 ): Promise<Video[]> {
   "use cache"
   cacheTag(`playlist-${playlistId}`)
-  cacheLife("hours")
+  cacheLife("max")
 
   const items: youtube_v3.Schema$PlaylistItem[] = []
   let pageToken: string | undefined
