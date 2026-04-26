@@ -7,6 +7,7 @@ const CACHE_TAGS = [
   "latest-videos",
   "most-watched",
   "all-videos",
+  "videos",
 ] as const
 
 export async function GET(request: Request) {

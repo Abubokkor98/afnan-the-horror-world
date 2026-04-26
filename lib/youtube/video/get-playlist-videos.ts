@@ -13,7 +13,7 @@ export async function getPlaylistVideos(
   playlistId: string,
 ): Promise<Video[]> {
   "use cache"
-  cacheTag(`playlist-${playlistId}`)
+  cacheTag("playlists", `playlist-${playlistId}`)
   cacheLife("max")
 
   const items: youtube_v3.Schema$PlaylistItem[] = []
