@@ -1,3 +1,4 @@
+import { cacheLife, cacheTag } from "next/cache"
 import { youtube, CHANNEL_ID } from "@/lib/youtube/client"
 
 /**
@@ -5,6 +6,10 @@ import { youtube, CHANNEL_ID } from "@/lib/youtube/client"
  * Every YouTube channel has a hidden uploads playlist containing all videos.
  */
 export async function getUploadsPlaylistId(): Promise<string | null> {
+  "use cache"
+  cacheTag("channel")
+  cacheLife("max")
+
   const res = await youtube.channels.list({
     part: ["contentDetails"],
     id: [CHANNEL_ID],

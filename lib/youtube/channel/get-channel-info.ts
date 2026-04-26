@@ -9,7 +9,7 @@ import { mapToChannel } from "@/lib/youtube/mappers"
 export async function getChannelInfo(): Promise<Channel | null> {
   "use cache"
   cacheTag("channel")
-  cacheLife("hours")
+  cacheLife("max")
 
   const res = await youtube.channels.list({
     part: ["snippet", "statistics"],

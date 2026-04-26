@@ -10,7 +10,7 @@ import { fetchAllPlaylistVideos } from "@/lib/youtube/helpers/fetch-all-playlist
 export async function getAllVideos(): Promise<Video[]> {
   "use cache"
   cacheTag("all-videos")
-  cacheLife("hours")
+  cacheLife("max")
 
   const playlists = await getAllPlaylists()
   return fetchAllPlaylistVideos(playlists)

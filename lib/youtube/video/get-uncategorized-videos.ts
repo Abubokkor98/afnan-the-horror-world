@@ -13,7 +13,7 @@ import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 export async function getUncategorizedVideos(): Promise<Video[]> {
   "use cache"
   cacheTag("uncategorized")
-  cacheLife("hours")
+  cacheLife("max")
 
   const uploadsPlaylistId = await getUploadsPlaylistId()
   if (!uploadsPlaylistId) return []

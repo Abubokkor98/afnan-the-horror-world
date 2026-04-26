@@ -11,7 +11,7 @@ import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 export async function getVideo(videoId: string): Promise<Video | null> {
   "use cache"
   cacheTag("all-videos", `video-${videoId}`)
-  cacheLife("hours")
+  cacheLife("max")
 
   const details = await getVideoDetails([videoId])
   if (details.length === 0) return null
