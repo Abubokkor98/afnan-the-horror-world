@@ -1,9 +1,9 @@
 import type { ComponentType } from "react"
 import { RiYoutubeFill, RiFacebookFill, RiMailLine } from "@remixicon/react"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
 const YOUTUBE_URL = "https://youtube.com/@AfnanTheHorrorWorldBD"
 const FACEBOOK_URL = "https://www.facebook.com/AfnanTheHorrorWorldBD"
-const EMAIL = "afnanthehorrorworldbd@gmail.com"
 
 interface SocialLink {
   href: string
@@ -15,7 +15,7 @@ interface SocialLink {
 const SOCIAL_LINKS: SocialLink[] = [
   { href: YOUTUBE_URL, icon: RiYoutubeFill, label: "YouTube", isExternal: true },
   { href: FACEBOOK_URL, icon: RiFacebookFill, label: "Facebook", isExternal: true },
-  { href: `mailto:${EMAIL}`, icon: RiMailLine, label: "Email", isExternal: false },
+  { href: `mailto:${CONTACT_EMAIL}`, icon: RiMailLine, label: "Email", isExternal: false },
 ]
 
 export function FooterSocials() {

@@ -5,7 +5,9 @@ const TIMESTAMP_PATTERN = /^(\d{1,2}:\d{2}(?::\d{2})?)\s+(.+)/
 
 /**
  * Extracts timestamped stories from a video description.
- * Returns [] if fewer than 2 timestamps found (not a multi-story video).
+ * Removes an initial "Intro" entry (seconds === 0, title starts with "intro",
+ * case-insensitive) since it represents the host's opening talk, not a story.
+ * Returns [] if fewer than 2 actual stories remain after filtering.
  */
 export function parseTimestamps(description: string): ParsedTimestamp[] {
   const lines = description.split("\n")
@@ -23,7 +25,16 @@ export function parseTimestamps(description: string): ParsedTimestamp[] {
     })
   }
 
-  return timestamps.length >= 2 ? timestamps : []
+  if (timestamps.length < 2) return []
+
+  // The first timestamp is typically the host's intro talk, not a story
+  const hasIntro =
+    timestamps[0].seconds === 0 &&
+    /^intro\b/i.test(timestamps[0].title)
+
+  const stories = hasIntro ? timestamps.slice(1) : timestamps
+
+  return stories.length >= 2 ? stories : []
 }
 
 const COUNTRY_PATTERN = /#country:([a-zA-Z ]+)/i

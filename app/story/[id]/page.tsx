@@ -1,22 +1,16 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { RiTimeLine, RiEyeLine, RiCalendarLine } from "@remixicon/react"
 import { getVideo } from "@/lib/youtube/video/get-video"
-import { getPlaylistVideos } from "@/lib/youtube/video/get-playlist-videos"
-import { getLatestVideos } from "@/lib/youtube/video/get-latest-videos"
-import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
+import { getRelatedVideos } from "@/lib/youtube/video/get-related-videos"
 import { parseTimestamps, parseCountry } from "@/lib/parse-description"
-import { formatViewCount, formatTimeAgo, formatDuration } from "@/lib/format"
 import { safeJsonLd } from "@/lib/safe-json-ld"
 import { VideoPlayer } from "@/components/video/video-player"
-import { CategoryBadge } from "@/components/video/category-badge"
-import { Badge } from "@/components/ui/badge"
-import { VideoGrid } from "@/components/video/video-grid"
-import { StoryTimestamps } from "@/components/story/story-timestamps"
+import { StoryHeader } from "@/components/story/story-header"
 import { StoryDescription } from "@/components/story/story-description"
+import { StoryTimestamps } from "@/components/story/story-timestamps"
 import { ShareButtons } from "@/components/story/share-buttons"
 import { StorySidebar } from "@/components/story/story-sidebar"
-import { Video } from "@/types/youtube"
+import { StoryRelated } from "@/components/story/story-related"
 
 interface StoryPageProps {
   params: Promise<{ id: string }>
@@ -74,72 +68,15 @@ export default async function StoryPage({ params }: StoryPageProps) {
           <StoryHeader video={video} country={country} />
           <StoryDescription description={video.description} />
           <StoryTimestamps timestamps={timestamps} videoId={id} />
-          <ShareButtons videoId={id} title={video.title} storyUrl={storyUrl} />
+          <ShareButtons title={video.title} storyUrl={storyUrl} />
         </div>
         <StorySidebar video={video} />
       </div>
 
-      {related.length > 0 && (
-        <section className="mt-16 space-y-6 border-t border-(--color-border) pt-12">
-          <h2 className="text-2xl font-semibold">
-            {video.categorySlug
-              ? "More Stories in This Category"
-              : "More Stories"}
-          </h2>
-          <VideoGrid videos={related} />
-        </section>
-      )}
+      <StoryRelated
+        videos={related}
+        hasCategory={Boolean(video.categorySlug)}
+      />
     </main>
-  )
-}
-
-const RELATED_COUNT = 4
-
-async function getRelatedVideos(categorySlug: string, currentId: string) {
-  try {
-    if (categorySlug) {
-      const playlists = await getAllPlaylists()
-      const playlist = playlists.find((p) => p.slug === categorySlug)
-      if (playlist) {
-        const videos = await getPlaylistVideos(playlist.id)
-        return videos.filter((v) => v.id !== currentId).slice(0, RELATED_COUNT)
-      }
-    }
-    const latest = await getLatestVideos(RELATED_COUNT + 1)
-    return latest.filter((v) => v.id !== currentId).slice(0, RELATED_COUNT)
-  } catch {
-    return []
-  }
-}
-
-function StoryHeader({
-  video,
-  country,
-}: {
-  video: Video
-  country: string | null
-}) {
-  return (
-    <div className="space-y-3">
-      <h1 className="text-2xl leading-tight font-semibold lg:text-3xl">
-        {video.title}
-      </h1>
-      <div className="flex flex-wrap items-center gap-3 text-sm text-(--color-text-subtle)">
-        <CategoryBadge category={video.categoryLabel} />
-        {country && <Badge variant="outline">{country}</Badge>}
-        <span className="flex items-center gap-1">
-          <RiEyeLine className="h-3.5 w-3.5" />
-          {formatViewCount(video.viewCount)}
-        </span>
-        <span className="flex items-center gap-1">
-          <RiTimeLine className="h-3.5 w-3.5" />
-          {formatDuration(video.duration)}
-        </span>
-        <span className="flex items-center gap-1">
-          <RiCalendarLine className="h-3.5 w-3.5" />
-          {formatTimeAgo(video.publishedAt)}
-        </span>
-      </div>
-    </div>
   )
 }
