@@ -1,7 +1,7 @@
 import { RiMailSendLine } from "@remixicon/react"
 import { Button } from "@/components/ui/button"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
-const SUBMISSION_EMAIL = "afnanthehorrorworldbd@gmail.com"
 const MAILTO_SUBJECT = encodeURIComponent("ভয়ের ঘটনা — Afnan The Horror World")
 
 export function SubmitEmailCta() {
@@ -16,12 +16,12 @@ export function SubmitEmailCta() {
         size="lg"
         className="bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)"
       >
-        <a href={`mailto:${SUBMISSION_EMAIL}?subject=${MAILTO_SUBJECT}`}>
-          <RiMailSendLine className="mr-2 h-5 w-5" />
+        <a href={`mailto:${CONTACT_EMAIL}?subject=${MAILTO_SUBJECT}`}>
+          <RiMailSendLine className="h-5 w-5" />
           ইমেইলে ঘটনা পাঠান
         </a>
       </Button>
-      <p className="text-sm text-(--color-text-subtle)">{SUBMISSION_EMAIL}</p>
+      <p className="text-sm text-(--color-text-subtle)">{CONTACT_EMAIL}</p>
     </section>
   )
 }

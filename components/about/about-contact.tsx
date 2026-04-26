@@ -1,6 +1,5 @@
 import { RiMailLine } from "@remixicon/react"
-
-const CONTACT_EMAIL = "afnanthehorrorworldbd@gmail.com"
+import { CONTACT_EMAIL } from "@/lib/constants"
 
 export function AboutContact() {
   return (

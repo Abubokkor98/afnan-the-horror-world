@@ -24,7 +24,8 @@ export async function getRelatedVideos(
     }
     const latest = await getLatestVideos(RELATED_COUNT + 1)
     return latest.filter((v) => v.id !== currentId).slice(0, RELATED_COUNT)
-  } catch {
+  } catch (error) {
+    console.error(`getRelatedVideos failed for category="${categorySlug}"`, error)
     return []
   }
 }
