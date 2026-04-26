@@ -23,7 +23,14 @@ export function parseTimestamps(description: string): ParsedTimestamp[] {
     })
   }
 
-  return timestamps.length >= 2 ? timestamps : []
+  if (timestamps.length < 2) return []
+
+  // The first timestamp is typically the host's intro talk, not a story
+  const hasIntro =
+    timestamps[0].seconds === 0 &&
+    /^intro\b/i.test(timestamps[0].title)
+
+  return hasIntro ? timestamps.slice(1) : timestamps
 }
 
 const COUNTRY_PATTERN = /#country:([a-zA-Z ]+)/i

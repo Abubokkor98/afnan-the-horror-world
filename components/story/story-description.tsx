@@ -13,7 +13,7 @@ export function StoryDescription({ description }: StoryDescriptionProps) {
     <section className="space-y-3">
       <h2 className="text-xl font-semibold">About This Story</h2>
       <div className="rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-5">
-        <p className="whitespace-pre-line text-sm leading-relaxed text-(--color-text-body)">
+        <p className="whitespace-pre-line wrap-break-word text-sm leading-relaxed text-(--color-text-body)">
           {cleanDescription}
         </p>
       </div>
