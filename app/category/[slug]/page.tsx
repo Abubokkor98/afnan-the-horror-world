@@ -5,6 +5,11 @@ import { getPlaylistVideos } from "@/lib/youtube/video/get-playlist-videos"
 import { PaginatedVideoGrid } from "@/components/video/paginated-video-grid"
 import { CategoryGrid } from "@/components/category-grid/category-grid"
 
+export async function generateStaticParams() {
+  const playlists = await getAllPlaylists()
+  return playlists.map((playlist) => ({ slug: playlist.slug }))
+}
+
 interface CategoryPageProps {
   params: Promise<{ slug: string }>
 }
