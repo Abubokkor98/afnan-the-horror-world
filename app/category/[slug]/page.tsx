@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 import { getPlaylistVideos } from "@/lib/youtube/video/get-playlist-videos"
-import { VideoGrid } from "@/components/video/video-grid"
+import { PaginatedVideoGrid } from "@/components/video/paginated-video-grid"
 import { CategoryGrid } from "@/components/category-grid/category-grid"
 
 interface CategoryPageProps {
@@ -54,7 +54,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       {/* Video grid */}
-      <VideoGrid videos={videos} priorityCount={4} />
+      <PaginatedVideoGrid videos={videos} />
 
       {/* Other categories */}
       {otherPlaylists.length > 0 && (

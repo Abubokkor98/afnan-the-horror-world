@@ -3,7 +3,7 @@
 import Link from "next/link"
 import type { Video, Playlist } from "@/types/youtube"
 import { Badge } from "@/components/ui/badge"
-import { VideoGrid } from "@/components/video/video-grid"
+import { PaginatedVideoGrid } from "@/components/video/paginated-video-grid"
 
 interface SearchResultsProps {
   query: string
@@ -66,7 +66,7 @@ export function SearchResults({
           </p>
         </div>
       ) : (
-        <VideoGrid videos={videos} priorityCount={4} />
+        <PaginatedVideoGrid videos={videos} />
       )}
     </>
   )
