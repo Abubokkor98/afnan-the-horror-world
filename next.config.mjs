@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-  experimental: {
-    useCache: true,
-    cacheLife: {
-      max: {
-        stale: 300, // 5 minutes (initial fetch)
-        revalidate: 43200, // 12 hours (on demand updates)
-        expire: 604800, // 7 days (eviction)
-      },
+  cacheComponents: true,
+  cacheLife: {
+    max: {
+      stale: 3600, // 1 hour (initial fetch)
+      revalidate: 43200, // 12 hours (on demand updates)
+      expire: 604800, // 7 days (eviction)
     },
   },
   images: {
