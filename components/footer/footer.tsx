@@ -84,7 +84,10 @@ export function Footer({ playlists }: FooterProps) {
             © {currentYear} Afnan The Horror World. All rights reserved.
           </p>
           <p className="text-xs text-(--color-text-subtle)">
-            Made with 🖤 for horror fans
+            Made with 🖤 for the listeners by{" "}
+            <a href="https://abubokkor.vercel.app" target="_blank" rel="noopener noreferrer" className="text-(--color-text-muted) no-underline hover:text-(--color-text-primary)">
+              AB
+            </a>
           </p>
         </div>
       </div>

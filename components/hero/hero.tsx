@@ -7,10 +7,10 @@ interface HeroProps {
 }
 
 export function Hero({ latestVideo, subscriberCount }: HeroProps) {
-  const backgroundUrl = latestVideo?.thumbnail ?? ""
+  const backgroundUrl = latestVideo?.thumbnail ?? "/hero-fallback.jpg"
 
   return (
-    <section className="grain-overlay vignette relative flex min-h-[calc(100svh-5rem)] w-full items-center overflow-hidden">
+    <section className="grain-overlay vignette relative flex min-h-[calc(100svh-4rem)] w-full items-center overflow-hidden">
       {/* Blurred background thumbnail */}
       {backgroundUrl && (
         <div

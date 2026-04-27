@@ -3,15 +3,33 @@ import { VideoCardSkeleton } from "@/components/skeletons/video-card-skeleton"
 
 export function HeroSkeleton() {
   return (
-    <div className="relative flex min-h-svh items-center bg-(--color-bg-page) max-md:min-h-[90vh]">
-      <div className="mx-auto max-w-7xl px-4 py-20">
-        <div className="max-w-2xl space-y-6">
-          <Skeleton className="h-8 w-48 rounded-full" />
-          <Skeleton className="h-16 w-96" />
-          <Skeleton className="h-5 w-80" />
-          <div className="flex gap-4 pt-2">
-            <Skeleton className="h-11 w-44 rounded-md" />
-            <Skeleton className="h-11 w-40 rounded-md" />
+    <div className="relative flex min-h-[calc(100svh-5rem)] items-center bg-(--color-bg-page)">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-8 sm:py-12 lg:px-8">
+        <div className="flex w-full max-w-4xl flex-col items-center space-y-5 sm:space-y-6">
+          {/* Badge row */}
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-7 w-36 rounded-full" />
+            <Skeleton className="hidden h-px w-8 sm:block" />
+            <Skeleton className="h-4 w-44" />
+          </div>
+
+          {/* Title — 3 lines like the actual hero */}
+          <div className="flex flex-col items-center gap-2 sm:gap-3">
+            <Skeleton className="h-12 w-64 sm:h-16 sm:w-80 md:h-20 md:w-96" />
+            <Skeleton className="h-12 w-72 sm:h-16 sm:w-96 md:h-20 md:w-md" />
+            <Skeleton className="h-12 w-52 sm:h-16 sm:w-64 md:h-20 md:w-80" />
+          </div>
+
+          {/* Description paragraph */}
+          <div className="flex flex-col items-center gap-1.5">
+            <Skeleton className="h-5 w-80 sm:w-md" />
+            <Skeleton className="h-5 w-64 sm:w-96" />
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex gap-3 pt-2 sm:gap-4 sm:pt-4">
+            <Skeleton className="h-10 w-44 rounded-lg" />
+            <Skeleton className="h-10 w-40 rounded-lg" />
           </div>
         </div>
       </div>
