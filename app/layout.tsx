@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { Creepster, Oswald, Outfit } from "next/font/google"
 import { Navbar } from "@/components/navbar/navbar"
 import { Footer } from "@/components/footer/footer"
-import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
 
 import "./globals.css"
 
@@ -33,22 +33,24 @@ export const metadata: Metadata = {
     "Real horror stories narrated by Afnan — from your neighbourhood, from every corner of the world.",
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const playlists = await getSortedPlaylists().catch(() => [])
-
   return (
     <html
       lang="en"
       className={`${creepster.variable} ${oswald.variable} ${outfit.variable} antialiased`}
     >
       <body className="flex min-h-svh flex-col">
-        <Navbar playlists={playlists} />
+        <Suspense>
+          <Navbar />
+        </Suspense>
         <div className="flex-1">{children}</div>
-        <Footer playlists={playlists} />
+        <Suspense>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   )

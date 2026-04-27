@@ -1,5 +1,6 @@
 import Link from "next/link"
-import type { Playlist } from "@/types/youtube"
+import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
+import { getCachedCurrentYear } from "@/lib/get-cached-current-year"
 import { FooterBrand } from "@/components/footer/footer-brand"
 import { FooterCategories } from "@/components/footer/footer-categories"
 import { Separator } from "@/components/ui/separator"
@@ -10,13 +11,9 @@ const SITE_LINKS = [
   { href: "/about", label: "About" },
 ] as const
 
-interface FooterProps {
-  playlists: Playlist[]
-}
-
-export function Footer({ playlists }: FooterProps) {
-  const currentYear = new Date().getFullYear()
-
+export async function Footer() {
+  const playlists = await getSortedPlaylists().catch(() => [])
+  const currentYear = await getCachedCurrentYear()
   return (
     <footer className="border-t border-(--color-border) bg-(--color-bg-navbar)">
       <div className="mx-auto max-w-7xl px-4 py-12">
@@ -64,8 +61,8 @@ export function Footer({ playlists }: FooterProps) {
               Have a story?
             </h3>
             <p className="mx-auto max-w-xs text-sm leading-relaxed text-(--color-text-muted) md:mx-0">
-              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান — আফনান ভাইয়ের কণ্ঠে লক্ষ শ্রোতার
-              কাছে পৌঁছে যাক আপনার গল্প।
+              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান — আফনান ভাইয়ের কণ্ঠে লক্ষ
+              শ্রোতার কাছে পৌঁছে যাক আপনার গল্প।
             </p>
             <Link
               href="/submit"
@@ -81,11 +78,17 @@ export function Footer({ playlists }: FooterProps) {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
           <p className="text-xs text-(--color-text-subtle)">
-            © {currentYear} Afnan The Horror World. All rights reserved.
+            © {currentYear} Afnan The Horror World. All rights
+            reserved.
           </p>
           <p className="text-xs text-(--color-text-subtle)">
             Made with 🖤 for the listeners by{" "}
-            <a href="https://abubokkor.vercel.app" target="_blank" rel="noopener noreferrer" className="text-(--color-text-muted) no-underline hover:text-(--color-text-primary)">
+            <a
+              href="https://abubokkor.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-(--color-text-muted) no-underline hover:text-(--color-text-primary)"
+            >
               AB
             </a>
           </p>

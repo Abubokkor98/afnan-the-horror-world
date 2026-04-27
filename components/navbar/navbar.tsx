@@ -1,15 +1,13 @@
 import Link from "next/link"
-import type { Playlist } from "@/types/youtube"
+import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
 import { DesktopNav } from "@/components/navbar/desktop-nav"
 import { SearchInput } from "@/components/navbar/search-input"
 import { MobileMenu } from "@/components/navbar/mobile-nav/mobile-menu"
 import { SubscribeButton } from "@/components/navbar/subscribe-button"
 
-interface NavbarProps {
-  playlists: Playlist[]
-}
+export async function Navbar() {
+  const playlists = await getSortedPlaylists().catch(() => [])
 
-export function Navbar({ playlists }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-(--color-border) bg-(--color-bg-navbar)/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">

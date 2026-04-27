@@ -2,8 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { RiFireFill } from "@remixicon/react"
 import { CategoryBadge } from "@/components/video/category-badge"
+import { TimeAgo } from "@/components/video/time-ago"
 import type { Video } from "@/types/youtube"
-import { formatViewCount, formatDuration, formatTimeAgo } from "@/lib/format"
+import { formatViewCount, formatDuration } from "@/lib/format"
 
 interface MostWatchedProps {
   videos: Video[]
@@ -45,7 +46,6 @@ interface MostWatchedCardProps {
 function MostWatchedCard({ video, rank }: MostWatchedCardProps) {
   const views = formatViewCount(video.viewCount)
   const duration = formatDuration(video.duration)
-  const timeAgo = formatTimeAgo(video.publishedAt)
   const isTopThree = rank <= TOP_FIRE_THRESHOLD
 
   return (
@@ -82,7 +82,9 @@ function MostWatchedCard({ video, rank }: MostWatchedCardProps) {
           </h3>
           <div className="flex items-center gap-2">
             <CategoryBadge category={video.categoryLabel} />
-            <span className="text-xs text-(--color-text-subtle)">{timeAgo}</span>
+            <span className="text-xs text-(--color-text-subtle)">
+              <TimeAgo date={video.publishedAt} />
+            </span>
           </div>
         </div>
       </article>

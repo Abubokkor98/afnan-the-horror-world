@@ -1,5 +1,6 @@
 import { RiEyeFill, RiVideoFill, RiGroupFill, RiCalendarFill } from "@remixicon/react"
 import type { Channel } from "@/types/youtube"
+import { getCachedCurrentYear } from "@/lib/get-cached-current-year"
 
 interface StatCardProps {
   icon: React.ComponentType<{ className?: string }>
@@ -26,9 +27,9 @@ interface ChannelStatsProps {
   channel: Channel
 }
 
-export function ChannelStats({ channel }: ChannelStatsProps) {
+export async function ChannelStats({ channel }: ChannelStatsProps) {
   const parsedYear = new Date(channel.publishedAt).getFullYear()
-  const currentYear = new Date().getFullYear()
+  const currentYear = await getCachedCurrentYear()
   const yearsActive = Number.isFinite(parsedYear) ? currentYear - parsedYear : null
   const yearsDisplay =
     yearsActive === null ? null : yearsActive === 0 ? "Less than a year" : `${yearsActive}+`
