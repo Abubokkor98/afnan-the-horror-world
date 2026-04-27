@@ -1,7 +1,8 @@
 import { RiTimeLine, RiEyeLine, RiCalendarLine } from "@remixicon/react"
 import { CategoryBadge } from "@/components/video/category-badge"
+import { TimeAgo } from "@/components/video/time-ago"
 import { Badge } from "@/components/ui/badge"
-import { formatViewCount, formatTimeAgo, formatDuration } from "@/lib/format"
+import { formatViewCount, formatDuration } from "@/lib/format"
 import type { Video } from "@/types/youtube"
 
 interface StoryHeaderProps {
@@ -12,7 +13,6 @@ interface StoryHeaderProps {
 export function StoryHeader({ video, country }: StoryHeaderProps) {
   const views = formatViewCount(video.viewCount)
   const duration = formatDuration(video.duration)
-  const timeAgo = formatTimeAgo(video.publishedAt)
 
   return (
     <div className="space-y-3">
@@ -32,7 +32,7 @@ export function StoryHeader({ video, country }: StoryHeaderProps) {
         </span>
         <span className="flex items-center gap-1">
           <RiCalendarLine className="h-3.5 w-3.5" />
-          {timeAgo}
+          <TimeAgo date={video.publishedAt} />
         </span>
       </div>
     </div>

@@ -3,8 +3,9 @@ import { RiPlayCircleFill, RiTimeLine } from "@remixicon/react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CategoryBadge } from "@/components/video/category-badge"
+import { TimeAgo } from "@/components/video/time-ago"
 import type { Video } from "@/types/youtube"
-import { formatViewCount, formatTimeAgo, formatDuration } from "@/lib/format"
+import { formatViewCount, formatDuration } from "@/lib/format"
 import { parseCountry } from "@/lib/parse-description"
 
 interface FeaturedContentProps {
@@ -13,7 +14,6 @@ interface FeaturedContentProps {
 
 export function FeaturedContent({ video }: FeaturedContentProps) {
   const views = formatViewCount(video.viewCount)
-  const timeAgo = formatTimeAgo(video.publishedAt)
   const duration = formatDuration(video.duration)
   const country = parseCountry(video.description)
   const publishDate = new Date(video.publishedAt).toLocaleDateString("en", {
@@ -62,7 +62,7 @@ export function FeaturedContent({ video }: FeaturedContentProps) {
 
       {/* Stats */}
       <p className="text-xs text-(--color-text-subtle)">
-        {views} · {publishDate} · {timeAgo}
+        {views} · {publishDate} · <TimeAgo date={video.publishedAt} />
       </p>
 
       {/* CTA */}

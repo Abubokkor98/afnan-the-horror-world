@@ -1,5 +1,12 @@
+import { cacheLife } from "next/cache"
 import { RiEyeFill, RiVideoFill, RiGroupFill, RiCalendarFill } from "@remixicon/react"
 import type { Channel } from "@/types/youtube"
+
+async function getCachedCurrentYear(): Promise<number> {
+  "use cache"
+  cacheLife("max")
+  return new Date().getFullYear()
+}
 
 interface StatCardProps {
   icon: React.ComponentType<{ className?: string }>
@@ -26,9 +33,9 @@ interface ChannelStatsProps {
   channel: Channel
 }
 
-export function ChannelStats({ channel }: ChannelStatsProps) {
+export async function ChannelStats({ channel }: ChannelStatsProps) {
   const parsedYear = new Date(channel.publishedAt).getFullYear()
-  const currentYear = new Date().getFullYear()
+  const currentYear = await getCachedCurrentYear()
   const yearsActive = Number.isFinite(parsedYear) ? currentYear - parsedYear : null
   const yearsDisplay =
     yearsActive === null ? null : yearsActive === 0 ? "Less than a year" : `${yearsActive}+`
