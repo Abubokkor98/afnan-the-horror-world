@@ -1,12 +1,6 @@
-import { cacheLife } from "next/cache"
 import { RiEyeFill, RiVideoFill, RiGroupFill, RiCalendarFill } from "@remixicon/react"
 import type { Channel } from "@/types/youtube"
-
-async function getCachedCurrentYear(): Promise<number> {
-  "use cache"
-  cacheLife("max")
-  return new Date().getFullYear()
-}
+import { getCachedCurrentYear } from "@/lib/get-cached-current-year"
 
 interface StatCardProps {
   icon: React.ComponentType<{ className?: string }>

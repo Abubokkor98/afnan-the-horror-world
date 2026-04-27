@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
+import { getCachedCurrentYear } from "@/lib/get-cached-current-year"
 import { FooterBrand } from "@/components/footer/footer-brand"
 import { FooterCategories } from "@/components/footer/footer-categories"
 import { Separator } from "@/components/ui/separator"
@@ -10,13 +11,9 @@ const SITE_LINKS = [
   { href: "/about", label: "About" },
 ] as const
 
-async function getCurrentYear() {
-  "use cache"
-  return new Date().getFullYear()
-}
-
 export async function Footer() {
   const playlists = await getSortedPlaylists().catch(() => [])
+  const currentYear = await getCachedCurrentYear()
   return (
     <footer className="border-t border-(--color-border) bg-(--color-bg-navbar)">
       <div className="mx-auto max-w-7xl px-4 py-12">
@@ -81,7 +78,7 @@ export async function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
           <p className="text-xs text-(--color-text-subtle)">
-            © {await getCurrentYear()} Afnan The Horror World. All rights
+            © {currentYear} Afnan The Horror World. All rights
             reserved.
           </p>
           <p className="text-xs text-(--color-text-subtle)">
