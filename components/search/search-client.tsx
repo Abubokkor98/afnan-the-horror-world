@@ -86,6 +86,7 @@ export function SearchClient({ initialQuery, videosPromise, playlistsPromise }: 
       </form>
 
       <SearchResults
+        key={`${debouncedQuery}-${category}`}
         query={debouncedQuery}
         videos={filtered}
         playlists={playlists}
