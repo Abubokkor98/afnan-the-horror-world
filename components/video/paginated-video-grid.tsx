@@ -1,3 +1,11 @@
+/**
+ * Renders a sliced view of `videos` with a "Load More" button.
+ * Internal pagination state (`visibleCount`) is initialized once from `pageSize`
+ * and is NOT reset when `videos` changes. Callers that mutate the input list
+ * (e.g. via filters/search) should remount this component by passing a React
+ * `key` derived from the relevant inputs to reset pagination back to the first page.
+ */
+
 "use client"
 
 import { useState } from "react"
