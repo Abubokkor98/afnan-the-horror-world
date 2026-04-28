@@ -21,6 +21,7 @@ export function FeaturedStory({ video }: FeaturedStoryProps) {
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               priority
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-(--color-bg-card)/60 max-lg:hidden" />
             <div className="absolute inset-0 bg-gradient-to-t from-(--color-bg-card) to-transparent lg:hidden" />

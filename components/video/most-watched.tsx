@@ -59,6 +59,7 @@ function MostWatchedCard({ video, rank }: MostWatchedCardProps) {
             width={480}
             height={270}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            unoptimized
           />
           {/* View count badge — bottom left */}
           <span className="absolute bottom-2 left-2 rounded bg-black/80 px-2 py-0.5 text-xs font-medium text-white">
