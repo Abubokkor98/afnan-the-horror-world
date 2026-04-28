@@ -77,20 +77,28 @@ export const youtube = {
       const videosDir = path.join(FIXTURES_DIR, "videos")
       try {
         const files = await fs.readdir(videosDir)
-        const allItems: unknown[] = []
+        const itemsById = new Map<string, unknown>()
 
         for (const file of files) {
           const fixture = JSON.parse(
             await fs.readFile(path.join(videosDir, file), "utf-8"),
           ) as { items: Array<{ id?: string }> }
 
-          const matched = fixture.items.filter(
-            (item) => item.id && params.id.includes(item.id),
-          )
-          allItems.push(...matched)
+          for (const item of fixture.items) {
+            if (item.id && params.id.includes(item.id) && !itemsById.has(item.id)) {
+              itemsById.set(item.id, item)
+            }
+          }
         }
 
-        return { data: { items: allItems } }
+        return {
+          data: {
+            items: params.id.flatMap((id) => {
+              const item = itemsById.get(id)
+              return item === undefined ? [] : [item]
+            }),
+          },
+        }
       } catch {
         return { data: { items: [] } }
       }

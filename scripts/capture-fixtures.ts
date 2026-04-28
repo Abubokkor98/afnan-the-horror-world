@@ -26,6 +26,11 @@ async function ensureDir(dir: string) {
   await fs.mkdir(dir, { recursive: true })
 }
 
+async function resetDir(dir: string) {
+  await fs.rm(dir, { recursive: true, force: true })
+  await fs.mkdir(dir, { recursive: true })
+}
+
 async function writeFixture(filepath: string, data: unknown) {
   await fs.writeFile(filepath, JSON.stringify(data, null, 2), "utf-8")
   console.log(`  ✓ ${path.relative(process.cwd(), filepath)}`)
@@ -123,6 +128,8 @@ async function main() {
   console.log(`   Channel: ${CHANNEL_ID}`)
 
   await ensureDir(FIXTURES_DIR)
+  await resetDir(path.join(FIXTURES_DIR, "playlist-items"))
+  await resetDir(path.join(FIXTURES_DIR, "videos"))
 
   // 1. Capture channel info + uploads playlist ID
   const uploadsPlaylistId = await captureChannel()
