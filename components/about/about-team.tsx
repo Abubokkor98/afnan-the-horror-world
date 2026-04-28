@@ -13,7 +13,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: "এম. এম. রহমত উল্লাহ আফনান",
     role: "Founder & Managing Director",
     bio: "জগন্নাথ বিশ্ববিদ্যালয়ের ফিন্যান্স বিভাগ থেকে BBA এবং MBA শেষ করেন। ২০১৩ সাল থেকে Bhoot FM-এ জনপ্রিয় স্টোরি টেলার।",
-    avatarUrl: "https://ui-avatars.com/api/?name=M+M+Afnan&background=B91C1C&color=fff&size=200&bold=true",
+    avatarUrl: "/afnan-vai.png",
   },
   {
     name: "রুনু আক্তার কণা",
