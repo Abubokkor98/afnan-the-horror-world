@@ -5,6 +5,7 @@ import { RiErrorWarningLine, RiRefreshLine, RiPlayListLine } from "@remixicon/re
 import { Button } from "@/components/ui/button"
 
 interface RouteErrorProps {
+  error: Error & { digest?: string }
   reset: () => void
 }
 

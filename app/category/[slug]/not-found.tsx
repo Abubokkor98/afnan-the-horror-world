@@ -20,24 +20,24 @@ export default function CategoryNotFound() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8">
         <Button
-          onClick={() => window.location.reload()}
+          asChild
           size="sm"
           className="bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover) md:h-10 md:px-5 md:text-sm"
         >
-          <RiRefreshLine className="mr-1.5 h-4 w-4" />
-          Try Again
+          <Link href="/stories">
+            <RiPlayListLine className="mr-1.5 h-4 w-4" />
+            All Stories
+          </Link>
         </Button>
 
         <Button
-          asChild
+          onClick={() => window.location.reload()}
           variant="outline"
           size="sm"
           className="border-(--color-bg-elevated) bg-transparent text-(--color-text-primary) hover:bg-(--color-bg-elevated) md:h-10 md:px-5 md:text-sm"
         >
-          <Link href="/stories">
-            <RiPlayListLine className="mr-1.5 h-4 w-4 text-(--color-text-muted)" />
-            All Stories
-          </Link>
+          <RiRefreshLine className="mr-1.5 h-4 w-4 text-(--color-text-muted)" />
+          Try Again
         </Button>
       </div>
     </main>
