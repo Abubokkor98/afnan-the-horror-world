@@ -4,6 +4,7 @@ import { SectionError } from "@/components/section-error/section-error"
 import type { Channel } from "@/types/youtube"
 
 export async function ChannelStatsSection() {
+  
   let channel: Channel | null
 
   try {
@@ -12,7 +13,7 @@ export async function ChannelStatsSection() {
     return <SectionError title="channel stats" />
   }
 
-  if (!channel) return null
+  if (!channel) return <SectionError title="channel stats" />
 
   return <ChannelStats channel={channel} />
 }

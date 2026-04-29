@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
 import { getVideo } from "@/lib/youtube/video/get-video"
 import { getRelatedVideos } from "@/lib/youtube/video/get-related-videos"
 import { parseTimestamps, parseCountry } from "@/lib/parse-description"
@@ -21,7 +20,6 @@ export async function generateMetadata({
 }: StoryPageProps): Promise<Metadata> {
   const { id } = await params
   const video = await getVideo(id)
-  if (!video) return { title: "Story Not Found" }
 
   return {
     title: `${video.title} | Afnan The Horror World`,
@@ -37,7 +35,6 @@ export async function generateMetadata({
 export default async function StoryPage({ params }: StoryPageProps) {
   const { id } = await params
   const video = await getVideo(id)
-  if (!video) notFound()
 
   const timestamps = parseTimestamps(video.description)
   const country = parseCountry(video.description)

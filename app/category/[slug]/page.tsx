@@ -32,6 +32,7 @@ export async function generateMetadata({
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
+  
   const { slug: rawSlug } = await params
   const slug = decodeURIComponent(rawSlug)
   const playlists = await getAllPlaylists()

@@ -47,11 +47,17 @@ export default function HomePage() {
         </SectionErrorBoundary>
 
         {/* 4. Featured Story — Editor's Pick cinematic layout */}
-        <SectionErrorBoundary name="featured story">
+        {/* TODO: Replace with one of these automated alternatives:
+         *  - Most Viewed This Month: auto-pick the video with the highest
+         *    views published in the last 30 days. Zero maintenance.
+         *  - Trending Story: the video with the highest view-to-age ratio
+         *    (views per day since publish). Highlights rising momentum.
+         */}
+        {/* <SectionErrorBoundary name="featured story">
           <Suspense fallback={<FeaturedStorySkeleton />}>
             <FeaturedSection />
           </Suspense>
-        </SectionErrorBoundary>
+        </SectionErrorBoundary> */}
 
         {/* 5. Most Watched — top 6 with rank badges */}
         <SectionErrorBoundary name="most watched stories">

@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from "next/cache"
+import { notFound } from "next/navigation"
 import type { Playlist, Video } from "@/types/youtube"
 import { mapToVideo } from "@/lib/youtube/mappers"
 import { getVideoDetails } from "@/lib/youtube/helpers/get-video-details"
@@ -8,13 +9,13 @@ import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 /**
  * Fetches a single video by ID with its category info.
  */
-export async function getVideo(videoId: string): Promise<Video | null> {
+export async function getVideo(videoId: string): Promise<Video> {
   "use cache"
   cacheTag("all-videos", `video-${videoId}`)
   cacheLife("max")
 
   const details = await getVideoDetails([videoId])
-  if (details.length === 0) return null
+  if (details.length === 0) notFound()
 
   const playlists = await getAllPlaylists()
   const playlist = await findPlaylistForVideo(videoId, playlists)
