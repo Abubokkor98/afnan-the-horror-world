@@ -1,12 +1,12 @@
 import type { youtube_v3 } from "googleapis"
 import type { Channel, Playlist, Video } from "@/types/youtube"
-import { titleToSlug } from "@/lib/format"
+import { resolvePlaylistSlug } from "@/lib/format"
 
 export function mapToPlaylist(item: youtube_v3.Schema$Playlist): Playlist {
   return {
     id: item.id!,
     title: item.snippet!.title!,
-    slug: titleToSlug(item.snippet!.title!),
+    slug: resolvePlaylistSlug(item.snippet!.title!, item.id!),
     description: item.snippet!.description ?? "",
     thumbnail: item.snippet!.thumbnails?.high?.url ?? "",
     videoCount: item.contentDetails?.itemCount ?? 0,
