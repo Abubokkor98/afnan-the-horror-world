@@ -90,11 +90,11 @@ export function titleToSlug(title: string): string {
  * 3. Playlist ID (safe fallback for unknown Bengali titles)
  */
 export function resolvePlaylistSlug(title: string, playlistId: string): string {
-  const normalizedTitle = title.normalize("NFC")
+  const normalizedTitle = title.normalize("NFC").trim()
   const override = SLUG_OVERRIDES[normalizedTitle]
-  if (override) return override
+  if (override && !NON_ASCII_PATTERN.test(override)) return override
 
-  const slug = titleToSlug(title)
+  const slug = titleToSlug(normalizedTitle)
 
   if (!slug || NON_ASCII_PATTERN.test(slug)) return playlistId
 
