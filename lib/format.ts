@@ -1,3 +1,7 @@
+import { SLUG_OVERRIDES } from "@/config/slug-overrides"
+
+const NON_ASCII_PATTERN = /[^\x00-\x7F]/
+
 const TIME_DIVISIONS: { amount: number; unit: Intl.RelativeTimeFormatUnit }[] = [
   { amount: 60, unit: "seconds" },
   { amount: 60, unit: "minutes" },
@@ -77,6 +81,24 @@ export function titleToSlug(title: string): string {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "")
+}
+
+/**
+ * Resolves a playlist slug with three-tier fallback:
+ * 1. Manual override from SLUG_OVERRIDES (for known Bengali titles)
+ * 2. titleToSlug (works perfectly for English titles)
+ * 3. Playlist ID (safe fallback for unknown Bengali titles)
+ */
+export function resolvePlaylistSlug(title: string, playlistId: string): string {
+  const normalizedTitle = title.normalize("NFC").trim()
+  const override = SLUG_OVERRIDES[normalizedTitle]
+  if (override && !NON_ASCII_PATTERN.test(override)) return override
+
+  const slug = titleToSlug(normalizedTitle)
+
+  if (!slug || NON_ASCII_PATTERN.test(slug)) return playlistId
+
+  return slug
 }
 
 export function durationToMinutes(iso8601: string): number {
