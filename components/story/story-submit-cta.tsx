@@ -5,11 +5,12 @@ import {
   RiWhatsappFill,
   RiGroupLine,
 } from "@remixicon/react"
-import { CONTACT_EMAIL } from "@/lib/constants"
-
-const WHATSAPP_NUMBER = "+8801811909218"
-const FACEBOOK_PAGE = "https://www.facebook.com/profile.php?id=100077819216421"
-const FACEBOOK_GROUP = "https://www.facebook.com/groups/506805008076493"
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_NUMBER,
+  FACEBOOK_PAGE,
+  FACEBOOK_GROUP,
+} from "@/lib/constants"
 
 interface ContactLink {
   href: string
