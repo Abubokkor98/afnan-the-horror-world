@@ -1,6 +1,6 @@
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import { getVideo } from "@/lib/youtube/video/get-video"
-import { getRelatedVideos } from "@/lib/youtube/video/get-related-videos"
 import { parseTimestamps, parseCountry } from "@/lib/parse-description"
 import { safeJsonLd } from "@/lib/safe-json-ld"
 import { VideoPlayer } from "@/components/video/video-player"
@@ -9,7 +9,8 @@ import { StoryDescription } from "@/components/story/story-description"
 import { StoryTimestamps } from "@/components/story/story-timestamps"
 import { ShareButtons } from "@/components/story/share-buttons"
 import { StorySidebar } from "@/components/story/story-sidebar"
-import { StoryRelated } from "@/components/story/story-related"
+import { StoryRelatedSection } from "@/components/story/story-related-section"
+import { StoryRelatedSkeleton } from "@/components/skeletons/story-related-skeleton"
 
 interface StoryPageProps {
   params: Promise<{ id: string }>
@@ -38,7 +39,6 @@ export default async function StoryPage({ params }: StoryPageProps) {
 
   const timestamps = parseTimestamps(video.description)
   const country = parseCountry(video.description)
-  const related = await getRelatedVideos(video.categorySlug, id)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
   const storyUrl = siteUrl ? `${siteUrl}/story/${id}` : `/story/${id}`
 
@@ -70,10 +70,12 @@ export default async function StoryPage({ params }: StoryPageProps) {
         <StorySidebar video={video} />
       </div>
 
-      <StoryRelated
-        videos={related}
-        hasCategory={Boolean(video.categorySlug)}
-      />
+      <Suspense fallback={<StoryRelatedSkeleton />}>
+        <StoryRelatedSection
+          categorySlug={video.categorySlug}
+          currentId={id}
+        />
+      </Suspense>
     </main>
   )
 }
