@@ -5,7 +5,7 @@ import { parseTimestamps, parseCountry } from "@/lib/parse-description"
 import { safeJsonLd } from "@/lib/safe-json-ld"
 import { VideoPlayer } from "@/components/video/video-player"
 import { StoryHeader } from "@/components/story/story-header"
-import { StoryDescription } from "@/components/story/story-description"
+import { StorySubmitCta } from "@/components/story/story-submit-cta"
 import { StoryTimestamps } from "@/components/story/story-timestamps"
 import { ShareButtons } from "@/components/story/share-buttons"
 import { StorySidebar } from "@/components/story/story-sidebar"
@@ -63,11 +63,13 @@ export default async function StoryPage({ params }: StoryPageProps) {
         <div className="space-y-8 lg:col-span-2">
           <VideoPlayer videoId={id} title={video.title} />
           <StoryHeader video={video} country={country} />
-          <StoryDescription description={video.description} />
           <StoryTimestamps timestamps={timestamps} videoId={id} />
           <ShareButtons title={video.title} storyUrl={storyUrl} />
         </div>
-        <StorySidebar video={video} />
+        <div className="space-y-8">
+          <StorySidebar video={video} />
+          <StorySubmitCta />
+        </div>
       </div>
 
       <Suspense fallback={<StoryRelatedSkeleton />}>
