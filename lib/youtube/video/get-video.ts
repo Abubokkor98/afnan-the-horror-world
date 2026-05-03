@@ -14,10 +14,13 @@ export async function getVideo(videoId: string): Promise<Video> {
   cacheTag("all-videos", `video-${videoId}`)
   cacheLife("max")
 
-  const details = await getVideoDetails([videoId])
+  const [details, playlists] = await Promise.all([
+    getVideoDetails([videoId]),
+    getAllPlaylists(),
+  ])
+
   if (details.length === 0) notFound()
 
-  const playlists = await getAllPlaylists()
   const playlist = await findPlaylistForVideo(videoId, playlists)
 
   return mapToVideo(
