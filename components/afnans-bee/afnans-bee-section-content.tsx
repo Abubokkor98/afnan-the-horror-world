@@ -16,9 +16,11 @@ interface AfnansBeeProps {
 export function AfnansBeeSectionContent({ data }: AfnansBeeProps) {
   const { videos, subscriberCount } = data
 
+  const parsedCount =
+    subscriberCount !== null ? parseInt(subscriberCount, 10) : null
   const subscriberLabel =
-    subscriberCount !== null
-      ? `${formatCompactNumber(parseInt(subscriberCount, 10))} subscribers`
+    parsedCount !== null && !Number.isNaN(parsedCount)
+      ? `${formatCompactNumber(parsedCount)} subscribers`
       : null
 
   return (
@@ -47,7 +49,7 @@ export function AfnansBeeSectionContent({ data }: AfnansBeeProps) {
           <Button
             asChild
             size="lg"
-            className="group bg-(--color-crimson) text-white transition-all duration-300 hover:bg-(--color-crimson-hover) hover:shadow-[0_0_30px_rgba(185,28,28,0.3)] hover:ring-2 hover:ring-(--color-crimson)/50 hover:ring-offset-2 hover:ring-offset-(--color-bg-card)"
+            className="group bg-(--color-crimson) text-white transition-all duration-300 hover:bg-(--color-crimson-hover) hover:shadow-[0_0_30px_color-mix(in_srgb,var(--color-crimson)_30%,transparent)] hover:ring-2 hover:ring-(--color-crimson)/50 hover:ring-offset-2 hover:ring-offset-(--color-bg-card)"
           >
             <a
               href={AFNANS_BEE_SUBSCRIBE_URL}
