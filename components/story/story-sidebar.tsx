@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { Video } from "@/types/youtube"
 import { formatViewCount, formatDate } from "@/lib/format"
 import { parseCountry } from "@/lib/parse-description"
+import { MAIN_CHANNEL_URL } from "@/config/channel-urls"
 
 interface StorySidebarProps {
   video: Video
@@ -36,7 +37,7 @@ export function StorySidebar({ video }: StorySidebarProps) {
         </dl>
       </div>
       <a
-        href="https://youtube.com/@AfnanTheHorrorWorldBD?sub_confirmation=1"
+        href={MAIN_CHANNEL_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="block rounded-lg bg-(--color-crimson) px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-(--color-crimson-hover)"

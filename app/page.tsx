@@ -6,7 +6,7 @@ import { CategoryGridSection } from "@/components/sections/category-grid-section
 import { AfnansBeeSection } from "@/components/sections/afnans-bee-section"
 import { MostWatchedSection } from "@/components/sections/most-watched-section"
 import { ChannelStatsSection } from "@/components/sections/channel-stats-section"
-import { FreshDropsSection } from "@/components/sections/fresh-drops-section"
+import { WeeklySchedule } from "@/components/weekly-schedule/weekly-schedule"
 import { SubmitCta } from "@/components/submit/submit-cta"
 import {
   HeroSkeleton,
@@ -16,7 +16,6 @@ import {
 import {
   MostWatchedSkeleton,
   ChannelStatsSkeleton,
-  FreshDropsSkeleton,
   AfnansBeeSkeleton,
 } from "@/components/skeletons/section-skeletons"
 
@@ -67,16 +66,10 @@ export default function HomePage() {
           </Suspense>
         </SectionErrorBoundary>
 
-        {/* 7. Weekly Schedule — TODO: replaces Fresh Drops */}
+        {/* 7. Weekly Schedule — static, no API needed */}
+        <WeeklySchedule />
 
-        {/* 8. Fresh Drops — uncategorized (only if any exist) */}
-        <SectionErrorBoundary name="fresh drops">
-          <Suspense fallback={<FreshDropsSkeleton />}>
-            <FreshDropsSection />
-          </Suspense>
-        </SectionErrorBoundary>
-
-        {/* 9. Submit CTA — static, no data needed */}
+        {/* 8. Submit CTA — static, no data needed */}
         <SubmitCta />
       </div>
     </>
