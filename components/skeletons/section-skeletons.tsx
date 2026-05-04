@@ -45,6 +45,34 @@ export function ChannelStatsSkeleton() {
   )
 }
 
+export function AfnansBeeSkeleton() {
+  return (
+    <div className="space-y-6 rounded-2xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-8">
+      <div className="space-y-2">
+        <Skeleton className="h-3 w-24" />
+        <Skeleton className="h-8 w-64" />
+        <Skeleton className="h-4 w-48" />
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {Array.from({ length: 4 }, (_, index) => (
+          <div key={index} className="overflow-hidden rounded-xl border border-(--color-bg-elevated)">
+            <Skeleton className="aspect-video w-full" />
+            <div className="space-y-2 p-3">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-3 w-20" />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col items-center gap-2 pt-2">
+        <Skeleton className="h-11 w-52 rounded-lg" />
+        <Skeleton className="h-3 w-40" />
+      </div>
+    </div>
+  )
+}
+
 export function FreshDropsSkeleton() {
   return (
     <div className="space-y-6 rounded-2xl border border-dashed border-(--color-amber)/40 p-6">

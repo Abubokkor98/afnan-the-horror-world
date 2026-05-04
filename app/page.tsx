@@ -3,7 +3,7 @@ import { SectionErrorBoundary } from "@/components/section-error/section-error-b
 import { HeroSection } from "@/components/sections/hero-section"
 import { LatestStoriesSection } from "@/components/sections/latest-stories-section"
 import { CategoryGridSection } from "@/components/sections/category-grid-section"
-import { FeaturedSection } from "@/components/sections/featured-section"
+import { AfnansBeeSection } from "@/components/sections/afnans-bee-section"
 import { MostWatchedSection } from "@/components/sections/most-watched-section"
 import { ChannelStatsSection } from "@/components/sections/channel-stats-section"
 import { FreshDropsSection } from "@/components/sections/fresh-drops-section"
@@ -12,12 +12,12 @@ import {
   HeroSkeleton,
   CategoryRowSkeleton,
   CategoryGridSkeleton,
-  FeaturedStorySkeleton,
 } from "@/components/skeletons/home-skeletons"
 import {
   MostWatchedSkeleton,
   ChannelStatsSkeleton,
   FreshDropsSkeleton,
+  AfnansBeeSkeleton,
 } from "@/components/skeletons/section-skeletons"
 
 export default function HomePage() {
@@ -46,41 +46,37 @@ export default function HomePage() {
           </Suspense>
         </SectionErrorBoundary>
 
-        {/* 4. Featured Story — Editor's Pick cinematic layout */}
-        {/* TODO: Replace with one of these automated alternatives:
-         *  - Most Viewed This Month: auto-pick the video with the highest
-         *    views published in the last 30 days. Zero maintenance.
-         *  - Trending Story: the video with the highest view-to-age ratio
-         *    (views per day since publish). Highlights rising momentum.
-         */}
-        {/* <SectionErrorBoundary name="featured story">
-          <Suspense fallback={<FeaturedStorySkeleton />}>
-            <FeaturedSection />
-          </Suspense>
-        </SectionErrorBoundary> */}
-
-        {/* 5. Most Watched — top 6 with rank badges */}
+        {/* 4. Most Watched — top 6 with rank badges */}
         <SectionErrorBoundary name="most watched stories">
           <Suspense fallback={<MostWatchedSkeleton />}>
             <MostWatchedSection />
           </Suspense>
         </SectionErrorBoundary>
 
-        {/* 6. Channel Stats — subscribers, videos, views */}
+        {/* 5. Channel Stats — capstone summary of main channel before AfnansBee */}
         <SectionErrorBoundary name="channel stats">
           <Suspense fallback={<ChannelStatsSkeleton />}>
             <ChannelStatsSection />
           </Suspense>
         </SectionErrorBoundary>
 
-        {/* 7. Fresh Drops — uncategorized (only if any exist) */}
+        {/* 6. AfnansBee Channel — cross-promotion after all main channel content */}
+        <SectionErrorBoundary name="AfnansBee channel">
+          <Suspense fallback={<AfnansBeeSkeleton />}>
+            <AfnansBeeSection />
+          </Suspense>
+        </SectionErrorBoundary>
+
+        {/* 7. Weekly Schedule — TODO: replaces Fresh Drops */}
+
+        {/* 8. Fresh Drops — uncategorized (only if any exist) */}
         <SectionErrorBoundary name="fresh drops">
           <Suspense fallback={<FreshDropsSkeleton />}>
             <FreshDropsSection />
           </Suspense>
         </SectionErrorBoundary>
 
-        {/* 8. Submit CTA — static, no data needed */}
+        {/* 9. Submit CTA — static, no data needed */}
         <SubmitCta />
       </div>
     </>

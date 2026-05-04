@@ -12,10 +12,16 @@ import path from "path"
 
 const API_KEY = process.env.YOUTUBE_API_KEY
 const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID
+const AFNANS_BEE_CHANNEL_ID = process.env.AFNANS_BEE_CHANNEL_ID
 
 if (!API_KEY || !CHANNEL_ID) {
   console.error("Missing YOUTUBE_API_KEY or YOUTUBE_CHANNEL_ID in .env.local")
   console.error("Run: npx dotenv -e .env.local -- npx tsx scripts/capture-fixtures.ts")
+  process.exit(1)
+}
+
+if (!AFNANS_BEE_CHANNEL_ID) {
+  console.error("Missing AFNANS_BEE_CHANNEL_ID in .env.local")
   process.exit(1)
 }
 
@@ -123,6 +129,41 @@ async function captureVideoDetails(videoIds: string[]) {
   }
 }
 
+async function captureAfnansBeeChannel() {
+  console.log("\n🐝 Capturing AfnansBee channel...")
+
+  const channelRes = await youtube.channels.list({
+    part: ["snippet", "statistics", "contentDetails"],
+    id: [AFNANS_BEE_CHANNEL_ID!],
+  })
+
+  await writeFixture(
+    path.join(FIXTURES_DIR, "afnans-bee-channel.json"),
+    { items: channelRes.data.items ?? [] },
+  )
+
+  const uploadsId =
+    channelRes.data.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
+
+  if (!uploadsId) {
+    console.log("  ⚠️  No uploads playlist found for AfnansBee — skipping items")
+    return
+  }
+
+  console.log("  📁 AfnansBee uploads playlist...")
+  const videosRes = await youtube.playlistItems.list({
+    part: ["snippet", "contentDetails"],
+    playlistId: uploadsId,
+    maxResults: 4,
+  })
+
+  await ensureDir(path.join(FIXTURES_DIR, "playlist-items"))
+  await writeFixture(
+    path.join(FIXTURES_DIR, "playlist-items", `${uploadsId}.json`),
+    { items: videosRes.data.items ?? [], nextPageToken: null },
+  )
+}
+
 async function main() {
   console.log("🎬 Capturing YouTube API fixtures...")
   console.log(`   Channel: ${CHANNEL_ID}`)
@@ -176,8 +217,11 @@ async function main() {
   console.log(`\n🎞️  Capturing video details (${allVideoIds.size} videos)...`)
   await captureVideoDetails([...allVideoIds])
 
+  // 6. Capture AfnansBee channel + latest uploads
+  await captureAfnansBeeChannel()
+
   console.log("\n✅ Done! Fixtures saved to lib/youtube/fixtures/")
-  console.log(`   ${playlists.length} playlists, ${allVideoIds.size} videos`)
+  console.log(`   ${playlists.length} playlists, ${allVideoIds.size} videos + AfnansBee channel`)
 }
 
 main().catch((error) => {
