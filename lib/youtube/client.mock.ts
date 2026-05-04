@@ -106,10 +106,14 @@ export const youtube = {
   },
 
   channels: {
-    async list(_params: ChannelsListParams): Promise<ListResponse<unknown>> {
-      return { data: await readFixture("channel.json") }
+    async list(params: ChannelsListParams): Promise<ListResponse<unknown>> {
+      const afnansBeeChanId = process.env.AFNANS_BEE_CHANNEL_ID
+      const isAfnansBee = afnansBeeChanId !== undefined && params.id.includes(afnansBeeChanId)
+      const fixture = isAfnansBee ? "afnans-bee-channel.json" : "channel.json"
+      return { data: await readFixture(fixture) }
     },
   },
 }
 
 export const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID ?? "MOCK_CHANNEL_ID"
+export const AFNANS_BEE_CHANNEL_ID = process.env.AFNANS_BEE_CHANNEL_ID ?? "MOCK_AFNANS_BEE_CHANNEL_ID"
