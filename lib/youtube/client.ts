@@ -1,8 +1,13 @@
 import { google } from "googleapis"
 
+const apiKey = process.env.YOUTUBE_API_KEY
+if (!apiKey) {
+  throw new Error("Missing YOUTUBE_API_KEY environment variable")
+}
+
 export const youtube = google.youtube({
   version: "v3",
-  auth: process.env.YOUTUBE_API_KEY,
+  auth: apiKey,
 })
 
 const channelId = process.env.YOUTUBE_CHANNEL_ID
