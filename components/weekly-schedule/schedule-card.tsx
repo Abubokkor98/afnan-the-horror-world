@@ -1,4 +1,5 @@
-import { RiCalendarLine, RiYoutubeFill } from "@remixicon/react"
+import { RiCalendarLine } from "@remixicon/react"
+import { AfnansBeeBadge } from "@/components/weekly-schedule/afnans-bee-badge"
 import type { ScheduleItem } from "@/config/schedule"
 
 interface ScheduleCardProps {
@@ -22,18 +23,7 @@ export function ScheduleCard({ item }: ScheduleCardProps) {
 
   return (
     <div className="relative flex gap-4 overflow-hidden rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-5">
-      {item.channel === "afnansbee" && (
-        <a
-          href={item.channelUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit AfnansBee on YouTube"
-          className="absolute -right-7 top-5 flex w-28 rotate-45 items-center justify-center gap-1 bg-(--color-amber) py-1 text-[10px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-(--color-amber-hover) md:-right-8 md:w-32 md:text-xs"
-        >
-          <RiYoutubeFill className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
-          @Bee
-        </a>
-      )}
+      {item.channel === "afnansbee" && <AfnansBeeBadge href={item.channelUrl} />}
       {/* Channel-coloured icon box */}
       <div
         className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${ICON_BG[item.channel]}`}

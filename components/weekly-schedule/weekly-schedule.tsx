@@ -18,7 +18,7 @@ export function WeeklySchedule() {
         </p>
       </div>
 
-      {/* Schedule grid — 5 days on desktop, 2 on tablet, 1 on mobile */}
+      {/* Schedule grid — 3 cols on desktop, 2 on tablet, 1 on mobile */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {WEEKLY_SCHEDULE.map((item) => (
           <ScheduleCard key={item.day} item={item} />
