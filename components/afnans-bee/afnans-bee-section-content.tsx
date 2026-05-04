@@ -3,11 +3,9 @@ import { Button } from "@/components/ui/button"
 import { formatCompactNumber } from "@/lib/format"
 import { AfnansBeeCard } from "@/components/afnans-bee/afnans-bee-card"
 import type { AfnansBeeData } from "@/types/afnans-bee"
+import { AFNANS_BEE_URL } from "@/config/channel-urls"
 
-const AFNANS_BEE_SUBSCRIBE_URL =
-  "https://youtube.com/@AfnansBee?sub_confirmation=1"
-
-const CONTENT_TAGS = ["ভ্রমণ", "ভ্লগ", "আলোচনা", "ইতিহাস"]
+const CONTENT_TAGS = ["Travel", "Vlog", "Discussion", "History"]
 
 interface AfnansBeeProps {
   data: AfnansBeeData
@@ -24,7 +22,7 @@ export function AfnansBeeSectionContent({ data }: AfnansBeeProps) {
       : null
 
   return (
-    <section className="relative space-y-8 overflow-hidden rounded-2xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-6 md:p-8">
+    <section className="relative space-y-8 overflow-hidden rounded-2xl bg-(--color-bg-page) p-6 shadow-[0_0_0_1px_color-mix(in_srgb,var(--color-amber)_25%,transparent),0_0_40px_color-mix(in_srgb,var(--color-amber)_8%,transparent)] md:p-8">
       {/* Amber glow — top-left atmosphere */}
       <div className="pointer-events-none absolute -top-16 -left-16 h-48 w-48 rounded-full bg-(--color-amber)/8 blur-3xl" />
 
@@ -33,15 +31,15 @@ export function AfnansBeeSectionContent({ data }: AfnansBeeProps) {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <span className="h-px w-6 bg-(--color-amber)" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-(--color-amber)">
+            <span className="text-xs font-semibold tracking-widest text-(--color-amber) uppercase">
               @AfnansBee
             </span>
           </div>
-          <h2 className="text-3xl font-semibold leading-tight">
-            আফনান ভাইয়ের নতুন চ্যাপ্টার
+          <h2 className="text-3xl leading-tight font-semibold">
+            Afnan&apos;s New Chapter
           </h2>
           <p className="text-sm text-(--color-text-muted)">
-            Horror এর বাইরেও আফনান ভাই
+            Afnan bhai is now beyond the horror world
           </p>
         </div>
 
@@ -52,7 +50,7 @@ export function AfnansBeeSectionContent({ data }: AfnansBeeProps) {
             className="group bg-(--color-crimson) text-white transition-all duration-300 hover:bg-(--color-crimson-hover) hover:shadow-[0_0_30px_color-mix(in_srgb,var(--color-crimson)_30%,transparent)] hover:ring-2 hover:ring-(--color-crimson)/50 hover:ring-offset-2 hover:ring-offset-(--color-bg-card)"
           >
             <a
-              href={AFNANS_BEE_SUBSCRIBE_URL}
+              href={AFNANS_BEE_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
