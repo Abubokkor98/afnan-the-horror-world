@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "")
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    ...(SITE_URL ? { sitemap: `${SITE_URL}/sitemap.xml` } : {}),
   }
 }

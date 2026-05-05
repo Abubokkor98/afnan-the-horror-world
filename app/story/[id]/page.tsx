@@ -60,11 +60,12 @@ export default async function StoryPage({ params }: StoryPageProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
   const storyUrl = siteUrl ? `${siteUrl}/story/${id}` : `/story/${id}`
 
-  const clipParts = timestamps.map((ts) => ({
+  const clipParts = timestamps.map((ts, i) => ({
     "@type": "Clip",
     name: ts.title,
     startOffset: ts.seconds,
-    endOffset: ts.seconds + 60,
+    endOffset:
+      i + 1 < timestamps.length ? timestamps[i + 1].seconds : ts.seconds + 60,
     url: `${storyUrl}?t=${ts.seconds}`,
   }))
 
