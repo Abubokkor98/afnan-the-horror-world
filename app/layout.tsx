@@ -3,6 +3,7 @@ import { Suspense } from "react"
 import { Creepster, Oswald, Outfit } from "next/font/google"
 import { Navbar } from "@/components/navbar/navbar"
 import { Footer } from "@/components/footer/footer"
+import { MotionProvider } from "@/components/providers/motion-provider"
 
 import "./globals.css"
 
@@ -44,13 +45,15 @@ export default function RootLayout({
       className={`${creepster.variable} ${oswald.variable} ${outfit.variable} antialiased`}
     >
       <body className="flex min-h-svh flex-col">
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        <div className="flex-1">{children}</div>
-        <Suspense>
-          <Footer />
-        </Suspense>
+        <MotionProvider>
+          <Suspense>
+            <Navbar />
+          </Suspense>
+          <div className="flex-1">{children}</div>
+          <Suspense>
+            <Footer />
+          </Suspense>
+        </MotionProvider>
       </body>
     </html>
   )
