@@ -2,7 +2,7 @@ import { EligibilityItem } from "@/components/submit/eligibility-item"
 
 export function SubmitEligibility() {
   return (
-    <section className="space-y-6">
+    <section lang="bn" className="space-y-6">
       <h2 className="text-2xl font-semibold">
         আপনার ঘটনা কি মনোনীত হতে পারে?
       </h2>

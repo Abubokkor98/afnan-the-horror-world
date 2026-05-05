@@ -54,7 +54,7 @@ export function StorySubmitCta() {
   return (
     <section className="space-y-4 rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-5">
       <h3 className="text-sm font-semibold">Share Your Story</h3>
-        <p className="text-sm leading-relaxed text-(--color-text-body)">
+        <p lang="bn" className="text-sm leading-relaxed text-(--color-text-body)">
           আপনার ঘটনার স্থান, সময়, সংশ্লিষ্ট ব্যক্তির নাম এবং পুরো ঘটনা রেকর্ড
           করে বা লিখে পাঠাতে পারেন। মোবাইল নম্বর দিতে ভুলবেন না। সত্যতা
           যাচাইয়ের পর প্রচারযোগ্য মনে হলে প্রচার করা হবে।

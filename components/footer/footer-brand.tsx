@@ -14,6 +14,7 @@ export function FooterBrand({ centered = false }: FooterBrandProps) {
         </span>
       </Link>
       <p
+        lang="bn"
         className={`text-sm leading-relaxed text-(--color-text-muted) ${centered ? "mx-auto mt-3 max-w-sm" : ""}`}
       >
         বাংলাদেশের সবচেয়ে জনপ্রিয় হরর চ্যানেল - আপনার পাড়া-মহল্লা থেকে
