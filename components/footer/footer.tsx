@@ -61,7 +61,7 @@ export async function Footer() {
               Have a story?
             </h3>
             <p className="mx-auto max-w-xs text-sm leading-relaxed text-(--color-text-muted) md:mx-0">
-              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান — আফনান ভাইয়ের কণ্ঠে লক্ষ
+              আপনার সত্য ভয়ের ঘটনা আমাদের পাঠান - আফনান ভাইয়ের কণ্ঠে লক্ষ
               শ্রোতার কাছে পৌঁছে যাক আপনার গল্প।
             </p>
             <Link

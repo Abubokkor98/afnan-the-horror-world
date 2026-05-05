@@ -16,7 +16,7 @@ export function FooterBrand({ centered = false }: FooterBrandProps) {
       <p
         className={`text-sm leading-relaxed text-(--color-text-muted) ${centered ? "mx-auto mt-3 max-w-sm" : ""}`}
       >
-        বাংলাদেশের সবচেয়ে জনপ্রিয় হরর চ্যানেল — আপনার পাড়া-মহল্লা থেকে
+        বাংলাদেশের সবচেয়ে জনপ্রিয় হরর চ্যানেল - আপনার পাড়া-মহল্লা থেকে
         বিশ্বের প্রতিটি কোণ থেকে সত্য ভয়ের ঘটনা।
       </p>
       {centered ? (

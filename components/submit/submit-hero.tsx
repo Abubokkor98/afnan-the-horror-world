@@ -1,7 +1,7 @@
 export function SubmitHero() {
   return (
     <section className="space-y-4 text-center">
-      <h1 className="text-4xl font-semibold lg:text-5xl">
+      <h1 className="text-3xl font-semibold lg:text-5xl">
         আপনার সত্য ভয়ের ঘটনা শেয়ার করুন
       </h1>
       <p className="mx-auto max-w-2xl text-lg text-(--color-text-body)">

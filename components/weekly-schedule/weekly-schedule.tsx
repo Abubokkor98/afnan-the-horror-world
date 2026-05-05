@@ -8,14 +8,14 @@ export function WeeklySchedule() {
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <span className="h-px w-6 bg-(--color-amber)" aria-hidden="true" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-(--color-amber)">
+          <span className="text-xs font-semibold tracking-widest text-(--color-amber) uppercase">
             Every Week
           </span>
         </div>
-        <h2 className="text-3xl font-semibold">Upload Schedule</h2>
-        <p className="text-sm text-(--color-text-muted)">
-          New horror stories drop every week — never miss an episode
-        </p>
+        <h2 className="text-3xl font-semibold">Episode Schedule</h2>
+        {/* <p className="text-sm text-(--color-text-muted)">
+          Stories arrive every week. Don&apos;t let them wait.
+        </p> */}
       </div>
 
       {/* Schedule grid — 3 cols on desktop, 2 on tablet, 1 on mobile */}
