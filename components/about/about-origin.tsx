@@ -1,6 +1,6 @@
 export function AboutOrigin() {
   return (
-    <section className="space-y-6">
+    <section lang="bn" className="space-y-6">
       <h2 className="text-2xl font-semibold">আমাদের গল্প</h2>
       <div className="space-y-4 text-sm leading-relaxed text-(--color-text-body)">
         <p>

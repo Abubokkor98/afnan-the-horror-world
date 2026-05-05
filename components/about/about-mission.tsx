@@ -1,6 +1,6 @@
 export function AboutMission() {
   return (
-    <section className="space-y-6">
+    <section lang="bn" className="space-y-6">
       <h2 className="text-2xl font-semibold">আমাদের লক্ষ্য</h2>
       <div className="rounded-2xl border border-(--color-crimson)/20 bg-gradient-to-br from-(--color-crimson)/5 to-transparent p-8">
         <p className="text-center text-lg leading-relaxed font-medium text-(--color-text-primary)">

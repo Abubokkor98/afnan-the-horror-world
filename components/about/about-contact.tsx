@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/constants"
 export function AboutContact() {
   return (
     <section className="space-y-4 text-center">
-      <h2 className="text-2xl font-semibold">যোগাযোগ</h2>
+      <h2 lang="bn" className="text-2xl font-semibold">যোগাযোগ</h2>
       <p className="text-sm text-(--color-text-muted)">
         For collaborations, press, or partnerships
       </p>

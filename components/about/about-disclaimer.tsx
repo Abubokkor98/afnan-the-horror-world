@@ -1,6 +1,6 @@
 export function AboutDisclaimer() {
   return (
-    <section className="space-y-4 rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-6">
+    <section lang="bn" className="space-y-4 rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-6">
       <h3 className="text-sm font-semibold text-(--color-text-muted)">
         বিশেষ দ্রষ্টব্য
       </h3>

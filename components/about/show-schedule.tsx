@@ -6,7 +6,7 @@ export function ShowSchedule() {
   return (
     <section className="space-y-6">
       <div className="space-y-2">
-        <h2 className="text-2xl font-semibold">সাপ্তাহিক শো সিডিউল</h2>
+        <h2 lang="bn" className="text-2xl font-semibold">সাপ্তাহিক শো সিডিউল</h2>
         <p className="text-sm text-(--color-text-muted)">
           Weekly Episode Schedule
         </p>
@@ -30,7 +30,7 @@ export function ShowSchedule() {
               </div>
               <div className="space-y-1">
                 <h3 className="font-semibold">{item.show}</h3>
-                <p className="text-xs text-(--color-text-muted)">{item.subtitle}</p>
+                <p lang="bn" className="text-xs text-(--color-text-muted)">{item.subtitle}</p>
                 <p className="text-xs text-(--color-text-subtle)">{dayLine}</p>
               </div>
             </div>

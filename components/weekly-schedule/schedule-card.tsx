@@ -44,7 +44,7 @@ export function ScheduleCard({ item }: ScheduleCardProps) {
             </span>
           )}
         </h3>
-        <p className="text-xs text-(--color-text-muted)">{item.dayBangla}</p>
+        <p lang="bn" className="text-xs text-(--color-text-muted)">{item.dayBangla}</p>
         <p className="text-xs text-(--color-text-subtle)">{metaLine}</p>
       </div>
     </div>

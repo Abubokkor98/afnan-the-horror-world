@@ -44,7 +44,7 @@ export function AboutTeam() {
   return (
     <section className="space-y-10">
       <div className="space-y-2 text-center">
-        <h2 className="text-3xl font-semibold">আমাদের টিম</h2>
+        <h2 lang="bn" className="text-3xl font-semibold">আমাদের টিম</h2>
         <p className="text-(--color-text-muted)">The people behind every story</p>
       </div>
 

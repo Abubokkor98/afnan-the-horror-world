@@ -9,7 +9,7 @@ const TEMPLATE_FIELDS = [
 
 export function SubmitTemplate() {
   return (
-    <section className="space-y-6">
+    <section lang="bn" className="space-y-6">
       <h2 className="text-2xl font-semibold">ঘটনায় যা যা উল্লেখ করবেন</h2>
       <div className="rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-6">
         <p className="mb-4 text-sm text-(--color-text-muted)">
