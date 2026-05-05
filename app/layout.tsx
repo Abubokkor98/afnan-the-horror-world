@@ -29,9 +29,27 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Afnan The Horror World | Feel The Real Fear With Us",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  title: {
+    default: "Afnan The Horror World - Feel The Real Fear With Us",
+    template: "%s - Afnan The Horror World",
+  },
   description:
     "Real horror stories narrated by Afnan — from your neighbourhood, from every corner of the world.",
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: "Afnan", url: "https://www.youtube.com/@AfnanTheHorrorWorldBD" }],
+  openGraph: {
+    siteName: "Afnan The Horror World",
+    locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@AfnanHorrorWorld",
+    creator: "@AfnanHorrorWorld",
+  },
 }
 
 export default function RootLayout({

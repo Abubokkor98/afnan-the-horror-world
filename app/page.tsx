@@ -19,9 +19,45 @@ import {
   AfnansBeeSkeleton,
 } from "@/components/skeletons/section-skeletons"
 
+import { safeJsonLd } from "@/lib/safe-json-ld"
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "")
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Afnan The Horror World",
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+}
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Afnan The Horror World",
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.png`,
+  sameAs: ["https://www.youtube.com/@AfnanTheHorrorWorldBD"],
+}
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationJsonLd) }}
+      />
       {/* 1. Hero — full viewport cinematic intro */}
       <SectionErrorBoundary name="hero">
         <Suspense fallback={<HeroSkeleton />}>

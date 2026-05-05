@@ -23,12 +23,30 @@ export async function generateMetadata({
   const video = await getVideo(id)
 
   return {
-    title: `${video.title} | Afnan The Horror World`,
+    title: video.title,
     description: video.description.slice(0, 160),
+    alternates: {
+      canonical: `/story/${id}`,
+    },
     openGraph: {
       title: video.title,
-      images: [{ url: video.thumbnail }],
+      description: video.description.slice(0, 300),
+      url: `/story/${id}`,
       type: "video.other",
+      images: [
+        {
+          url: video.thumbnail,
+          width: 1280,
+          height: 720,
+          alt: video.title,
+        },
+      ],
+      videos: [
+        {
+          url: `https://www.youtube.com/watch?v=${id}`,
+          type: "text/html",
+        },
+      ],
     },
   }
 }
@@ -42,14 +60,30 @@ export default async function StoryPage({ params }: StoryPageProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
   const storyUrl = siteUrl ? `${siteUrl}/story/${id}` : `/story/${id}`
 
+  const clipParts = timestamps.map((ts) => ({
+    "@type": "Clip",
+    name: ts.title,
+    startOffset: ts.seconds,
+    endOffset: ts.seconds + 60,
+    url: `${storyUrl}?t=${ts.seconds}`,
+  }))
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: video.title,
-    description: video.description,
+    description: video.description.slice(0, 5000),
     thumbnailUrl: video.thumbnail,
     uploadDate: video.publishedAt,
+    duration: video.duration,
     embedUrl: `https://www.youtube.com/embed/${id}`,
+    contentUrl: `https://www.youtube.com/watch?v=${id}`,
+    interactionStatistic: {
+      "@type": "InteractionCounter",
+      interactionType: "https://schema.org/WatchAction",
+      userInteractionCount: video.viewCount,
+    },
+    ...(clipParts.length > 0 && { hasPart: clipParts }),
   }
 
   return (
