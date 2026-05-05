@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { RiMenuLine } from "@remixicon/react"
 import type { Playlist } from "@/types/youtube"
@@ -23,6 +23,7 @@ interface MobileMenuProps {
 
 export function MobileMenu({ playlists }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
+  const titleRef = useRef<HTMLHeadingElement>(null)
   const currentPath = usePathname()
   const router = useRouter()
 
@@ -39,17 +40,24 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
     <div className="lg:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-(--color-bg-elevated) focus-visible:outline-none">
+          <button aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-(--color-bg-elevated) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--color-crimson)">
             <RiMenuLine className="h-5 w-5 text-(--color-text-primary)" />
           </button>
         </SheetTrigger>
         <SheetContent
           side="right"
           className="w-72 border-l border-(--color-border) bg-(--color-bg-navbar)"
-          onOpenAutoFocus={(event) => event.preventDefault()}
+          onOpenAutoFocus={(event) => {
+            event.preventDefault()
+            titleRef.current?.focus()
+          }}
+          onCloseAutoFocus={(event) => {
+            event.preventDefault()
+            ;(document.activeElement as HTMLElement)?.blur()
+          }}
         >
           <SheetHeader>
-            <SheetTitle className="text-(--color-text-primary)">Menu</SheetTitle>
+            <SheetTitle ref={titleRef} tabIndex={-1} className="text-(--color-text-primary) focus:outline-none">Menu</SheetTitle>
             <SheetDescription className="sr-only">Site navigation menu</SheetDescription>
           </SheetHeader>
 

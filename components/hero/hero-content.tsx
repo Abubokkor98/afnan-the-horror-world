@@ -50,7 +50,7 @@ export function HeroContent({
             WORLD
           </h1>
 
-          <p className="max-w-2xl text-base leading-relaxed font-light text-pretty text-(--color-text-body) sm:text-lg">
+          <p className="text-base leading-relaxed font-light text-pretty text-(--color-text-body) sm:text-lg md:max-w-xl lg:max-w-2xl">
             বাংলাদেশের সবচেয়ে জনপ্রিয় হরর চ্যানেল। সত্য ভৌতিক ঘটনা ও হাড়হিম
             করা গল্পের এক অনন্য জগৎ।
           </p>
