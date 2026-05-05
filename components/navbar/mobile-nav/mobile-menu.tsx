@@ -39,13 +39,14 @@ export function MobileMenu({ playlists }: MobileMenuProps) {
     <div className="lg:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-(--color-bg-elevated)">
+          <button aria-label="Open menu" className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-(--color-bg-elevated) focus-visible:outline-none">
             <RiMenuLine className="h-5 w-5 text-(--color-text-primary)" />
           </button>
         </SheetTrigger>
         <SheetContent
           side="right"
           className="w-72 border-l border-(--color-border) bg-(--color-bg-navbar)"
+          onOpenAutoFocus={(event) => event.preventDefault()}
         >
           <SheetHeader>
             <SheetTitle className="text-(--color-text-primary)">Menu</SheetTitle>

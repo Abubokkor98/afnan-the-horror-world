@@ -8,8 +8,8 @@ export function SubmitEmailCta() {
   return (
     <section className="space-y-4 rounded-2xl border border-(--color-bg-elevated) bg-(--color-bg-card) p-8 text-center">
       <h2 className="text-2xl font-semibold">প্রস্তুত তো?</h2>
-      <p className="text-(--color-text-body)">
-        আপনার ঘটনা ইমেইলে পাঠান — আমরা প্রতিটি ঘটনা মনোযোগ দিয়ে পড়ি।
+      <p className="text-sm text-(--color-text-body)">
+        আপনার ঘটনা ইমেইলে পাঠান - আমরা প্রতিটি ঘটনা মনোযোগ দিয়ে পড়ি।
       </p>
       <Button
         asChild

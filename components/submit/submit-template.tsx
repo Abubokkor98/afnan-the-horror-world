@@ -18,7 +18,7 @@ export function SubmitTemplate() {
         <div className="space-y-3 rounded-lg bg-(--color-bg-page) p-4 font-mono text-sm">
           {TEMPLATE_FIELDS.map((field) => (
             <div key={field.label}>
-              <span className="font-semibold text-(--color-crimson)">{field.label}:</span>{" "}
+              <span className=" text-(--color-crimson)">{field.label}:</span>{" "}
               <span className="text-(--color-text-subtle)">{field.hint}</span>
             </div>
           ))}
