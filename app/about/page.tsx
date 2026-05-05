@@ -11,9 +11,19 @@ import { AboutDisclaimer } from "@/components/about/about-disclaimer"
 import { AboutContact } from "@/components/about/about-contact"
 
 export const metadata: Metadata = {
-  title: "About | Afnan The Horror World",
+  title: "About",
   description:
     "The story behind Afnan The Horror World — preserving real horror stories from Bangladesh and beyond.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About",
+    description:
+      "The story behind Afnan The Horror World — preserving real horror stories from Bangladesh and beyond.",
+    url: "/about",
+    type: "website",
+  },
 }
 
 export default async function AboutPage() {

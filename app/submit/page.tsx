@@ -6,9 +6,19 @@ import { SubmitTemplate } from "@/components/submit/submit-template"
 import { SubmitEmailCta } from "@/components/submit/submit-email-cta"
 
 export const metadata: Metadata = {
-  title: "আপনার ঘটনা পাঠান | Afnan The Horror World",
+  title: "আপনার ঘটনা পাঠান",
   description:
     "আপনার সাথে ঘটে যাওয়া সত্য ভয়ের ঘটনা লিখে অথবা রেকর্ড করে আমাদের পাঠান।",
+  alternates: {
+    canonical: "/submit",
+  },
+  openGraph: {
+    title: "আপনার ঘটনা পাঠান",
+    description:
+      "আপনার সাথে ঘটে যাওয়া সত্য ভয়ের ঘটনা লিখে অথবা রেকর্ড করে আমাদের পাঠান।",
+    url: "/submit",
+    type: "website",
+  },
 }
 
 export default function SubmitPage() {

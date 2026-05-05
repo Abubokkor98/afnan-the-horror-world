@@ -17,13 +17,14 @@ export async function generateMetadata({
     .replace(/\s+/g, " ")
     .slice(0, 100)
   const title = safeQuery
-    ? `"${safeQuery}" — Search | Afnan The Horror World`
-    : "Search | Afnan The Horror World"
+    ? `"${safeQuery}" — Search`
+    : "Search"
 
   return {
     title,
     description:
       "Search horror stories narrated by Afnan — find any story by keyword.",
+    robots: { index: false, follow: false },
   }
 }
 

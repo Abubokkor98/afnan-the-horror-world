@@ -24,10 +24,21 @@ export async function generateMetadata({
   if (!playlist) return { title: "Category Not Found" }
 
   return {
-    title: `${playlist.title} | Afnan The Horror World`,
+    title: playlist.title,
     description:
       playlist.description ||
       `Browse all ${playlist.title} stories narrated by Afnan.`,
+    alternates: {
+      canonical: `/category/${slug}`,
+    },
+    openGraph: {
+      title: playlist.title,
+      description:
+        playlist.description ||
+        `Browse all ${playlist.title} stories narrated by Afnan.`,
+      url: `/category/${slug}`,
+      type: "website",
+    },
   }
 }
 

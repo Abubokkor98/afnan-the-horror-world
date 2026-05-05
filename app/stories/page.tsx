@@ -4,9 +4,19 @@ import { getSortedPlaylists } from "@/lib/youtube/playlist/get-sorted-playlists"
 import { StoriesClient } from "@/components/stories/stories-client"
 
 export const metadata: Metadata = {
-  title: "All Stories | Afnan The Horror World",
+  title: "All Stories",
   description:
     "Browse every horror story narrated by Afnan — filter by category, duration, and sort by views or date.",
+  alternates: {
+    canonical: "/stories",
+  },
+  openGraph: {
+    title: "All Stories",
+    description:
+      "Browse every horror story narrated by Afnan — filter by category, duration, and sort by views or date.",
+    url: "/stories",
+    type: "website",
+  },
 }
 
 export default async function StoriesPage() {
