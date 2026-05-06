@@ -1,4 +1,3 @@
-import { cacheLife, cacheTag } from "next/cache"
 import { notFound } from "next/navigation"
 import type { Playlist, Video } from "@/types/youtube"
 import { mapToVideo } from "@/lib/youtube/mappers"
@@ -8,12 +7,13 @@ import { getAllPlaylists } from "@/lib/youtube/playlist/get-all-playlists"
 
 /**
  * Fetches a single video by ID with its category info.
+ *
+ * No "use cache" here — the inner functions (getVideoDetails,
+ * getAllPlaylists, getVideoIdsFromPlaylist) already cache their own
+ * YouTube API results. This function just composes cached data,
+ * so notFound() is safe to call without risk of cache poisoning.
  */
 export async function getVideo(videoId: string): Promise<Video> {
-  "use cache"
-  cacheTag("all-videos", `video-${videoId}`)
-  cacheLife("max")
-
   const [details, playlists] = await Promise.all([
     getVideoDetails([videoId]),
     getAllPlaylists(),
