@@ -17,10 +17,15 @@ const nextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   cacheLife: {
+    //  max: {
+    //   stale: 3600, // 1 hour (initial fetch)
+    //   revalidate: 43200, // 12 hours (on demand updates)
+    //   expire: 604800, // 7 days (eviction)
+    // },
     max: {
-      stale: 3600, // 1 hour (initial fetch)
-      revalidate: 43200, // 12 hours (on demand updates)
-      expire: 604800, // 7 days (eviction)
+      stale: 300, // 5 minutes (serve cached without revalidation)
+      revalidate: 3600, // 1 hour (background revalidation window)
+      expire: 86400, // 1 day (eviction)
     },
   },
   images: {

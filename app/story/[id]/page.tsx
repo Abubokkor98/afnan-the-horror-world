@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
+import { connection } from "next/server"
 import { getVideo } from "@/lib/youtube/video/get-video"
 import { parseTimestamps, parseCountry } from "@/lib/parse-description"
 import { safeJsonLd } from "@/lib/safe-json-ld"
@@ -19,6 +20,7 @@ interface StoryPageProps {
 export async function generateMetadata({
   params,
 }: StoryPageProps): Promise<Metadata> {
+  await connection()
   const { id } = await params
   const video = await getVideo(id)
 
@@ -52,6 +54,7 @@ export async function generateMetadata({
 }
 
 export default async function StoryPage({ params }: StoryPageProps) {
+  await connection()
   const { id } = await params
   const video = await getVideo(id)
 
