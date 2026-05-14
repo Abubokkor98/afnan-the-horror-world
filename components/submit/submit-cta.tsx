@@ -50,17 +50,24 @@ export function SubmitCta() {
                 <step.icon className="h-7 w-7 text-(--color-crimson)" />
               </div>
               <h3 className="text-sm font-semibold">{step.title}</h3>
-              <p className="text-xs text-(--color-text-muted)">{step.description}</p>
+              <p className="text-xs text-(--color-text-muted)">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
 
         {/* Guidelines */}
         <div className="mx-auto max-w-md rounded-xl border border-(--color-bg-elevated) bg-(--color-bg-page)/50 p-5">
-          <h3 className="mb-3 text-center text-sm font-semibold">Submission Guidelines</h3>
+          <h3 className="mb-3 text-center text-sm font-semibold">
+            Submission Guidelines
+          </h3>
           <ul className="space-y-2">
             {SUBMISSION_GUIDELINES.map((guideline) => (
-              <li key={guideline} className="flex items-start gap-2 text-sm text-(--color-text-muted)">
+              <li
+                key={guideline}
+                className="flex items-start gap-2 text-sm text-(--color-text-muted)"
+              >
                 <span className="mt-0.5 text-(--color-crimson)">✓</span>
                 {guideline}
               </li>
@@ -70,12 +77,16 @@ export function SubmitCta() {
 
         {/* CTA + Social proof */}
         <div className="space-y-3 text-center">
-          <Button asChild size="lg" className="bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)">
+          <Button
+            asChild
+            size="lg"
+            className="bg-(--color-crimson) text-white hover:bg-(--color-crimson-hover)"
+          >
             <Link href="/submit">Submit Your Story</Link>
           </Button>
-          <p className="text-xs text-(--color-text-subtle)">
+          {/*<p className="text-xs text-(--color-text-subtle)">
             50+ stories submitted per month on average
-          </p>
+          </p>*/}
         </div>
       </div>
     </section>
