@@ -6,17 +6,17 @@ const SUBMISSION_STEPS = [
   {
     icon: RiMailSendLine,
     title: "Send your story",
-    description: "Email your true horror experience",
+    description: "Got a True Horror Story? Email Us",
   },
   {
     icon: RiSearchEyeLine,
-    title: "Afnan reviews it",
-    description: "Every story is verified personally",
+    title: "We review it",
+    description: "Every story is verified by us",
   },
   {
     icon: RiMicFill,
     title: "Gets narrated",
-    description: "If selected, Afnan narrates it himself",
+    description: "If selected, Afnan bhai narrates it himself",
   },
 ] as const
 
